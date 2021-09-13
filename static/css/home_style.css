@@ -1,6 +1,36 @@
-/*@media (max-width:1280px){
+/* REMOVER LETRA ROXA APÓS CLIQUE NO LINK */
+a {
+    color:inherit;
+}
 
-}*/
+/* RODAPÉ */
+#rodape {
+    position: absolute;
+    top: 1010px;
+    left: 890px;
+    margin: auto;
+    width: 50%;
+}
+
+.rodape_notas h5{
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+    text-align: justify-all;
+    position: absolute;
+    top: 1070px;
+    left: 750px;
+}
+
+.rodape_notas h6{
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+    text-align: justify-all;
+    position: absolute;
+    top: 1090px;
+    left: 750px;
+}
 
 * {
     padding-left:0px;
@@ -21,11 +51,11 @@
 }
 .buttonLogout {
     position:absolute;
-	background-color:white; /*#C4C4C4*/ /*cor cinza*/
+	background-color:rgb(0, 0, 0); /*#C4C4C4*/ /*cor cinza*/
     border-style:solid;
     border-color:rgb(0, 0, 0);
     border-radius:10px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     padding: 10px 25px;
     display: inline-block;
     font-size: 20px;
@@ -33,6 +63,7 @@
     top:30px;
     right:400px;
 }
+
 .textBoxPesquisar {
     position: relative;
     font-size:20px;
