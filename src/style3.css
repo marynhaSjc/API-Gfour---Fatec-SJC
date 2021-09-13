@@ -1,0 +1,266 @@
+/*@media (max-width:1280px){
+
+}*/
+
+* {
+    padding-left:0px;
+    margin:0px
+}
+.buttonBuscar {
+    position:relative;
+    background-color:#000000;
+    border-style:solid;
+    border-color:rgb(0, 0, 0);
+    border-radius:10px;
+    color: rgb(255, 255, 255);
+    padding: 10px 25px;
+    display: inline-block;
+    font-size: 20px;
+    margin-left:1150px;
+    bottom:10px;
+}
+.buttonLogout {
+    position:absolute;
+	background-color:white; /*#C4C4C4*/ /*cor cinza*/
+    border-style:solid;
+    border-color:rgb(0, 0, 0);
+    border-radius:10px;
+    color: rgb(0, 0, 0);
+    padding: 10px 25px;
+    display: inline-block;
+    font-size: 20px;
+    margin-left:1150px;
+    top:30px;
+    right:400px;
+}
+.textBoxPesquisar {
+    position: relative;
+    font-size:20px;
+    left: 20px;
+    top:10px;
+}
+
+.boxTopo {
+    position: relative;
+    width: 100%;
+    height: 114px;
+    left: 0px;
+    top: 0px;
+    background: #C4C4C4;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+
+.box2 {
+    position:relative;
+    width: 100%;
+    height: 114px;
+    background:white;
+    /*border: 1px solid #000000;*/
+	border: none;
+}
+.boxMeio {
+    position: relative;
+    width: 90%;
+    height: 770px;
+    left: 95px;
+    top: 10px;
+    background: #F1F3F2;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 61px;
+}
+.boxMeioInfoGeral {
+    position: absolute;
+    width: 25%;
+    height: 600px;
+    left: 80px;
+    top: 110px;
+    background: #C4C4C4;
+    border: 5px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 3.2478px 3.2478px rgba(0, 0, 0, 0.25);
+    border-radius: 61px;
+}
+.boxMeioTextInfoGeral {
+    position: absolute;
+    width: 400px;
+    height: 530.2px;
+    left: 130px;
+    top: 50px;
+    font-size:40px;
+}
+.boxMeioAgendaPessoal {
+    position: absolute;
+    width: 25%;
+    height: 600px;
+    left: 640px;
+    top: 110px;
+    border-style:solid;
+    border-radius: 61px;
+    border: 5px solid #000000;
+    background:#ffffff;
+}
+.boxMeioTextAgendaPessoal {
+    position: absolute;
+    width: 400px;
+    height: 530.2px;
+    left: 750px;
+    top: 50px;
+    font-size:40px;
+}
+.boxMeioPublicacoes {
+    position: relative;
+    width: 25%;
+    height: 600px;
+    left: 1193px;
+    right:80px;
+    top: 110px;
+    border-style:solid;
+    border-radius: 61px;
+    border: 5px solid #000000;
+    background:#C4C4C4;
+}
+
+.boxMeioPublicacoesTela {
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    left: 20.9px;
+    top: 20px;
+    background: #F1F3F2;
+    border: 3.78048px solid #000000;
+    box-sizing: border-box;
+    border-radius:50px;
+}
+.buttonPublicacoes {
+    position:absolute;
+    background-color:#D4DADA;
+    border-style:solid;
+    border-color:rgb(0, 0, 0);
+    border-radius:10px;
+    color: rgb(3, 3, 3);
+    padding: 10px 25px;
+    display: inline-block;
+    font-size: 20px;
+    margin-left:65%;
+    bottom:5%;
+}
+
+.buttonInfoGeral {
+    position:absolute;
+    background-color:#D4DADA;
+    border-style:solid;
+    border-color:rgb(0, 0, 0);
+    border-radius:10px;
+    color: rgb(3, 3, 3);
+    padding: 10px 25px;
+    display: inline-block;
+    font-size: 20px;
+    margin-left:65%;
+    bottom:5%;
+}
+.textInfoGeral {
+    position:absolute;
+    font-size:20px;
+    left:25px;
+    top:30px;
+}
+.buttonExpansao {
+    position:absolute;
+    color: rgb(3, 3, 3);
+    display: inline-block;
+    font-size: 20px;
+    margin-left:15%;
+    top:520px;
+    bottom:5%;
+    z-index:1;
+}
+#imgExpansao {
+    width:10px;
+    height:10px;
+}
+
+#imgCalendario {
+    width:100%;
+    height:auto;
+    position:relative;
+    top:60px;
+}
+.boxMeioPublicacoesAnexar {
+    position: absolute;
+    width: 55.57px;
+    height: 59.26px;
+    left: 150px;
+    top: 532px;  
+    margin-left:40px; 
+    border-radius: 58.2508px;
+}
+#imgAnexar {
+    width:35px;
+    height:30px;
+    z-index:1px;
+}
+.boxMeioPublicacoesData {
+    position: absolute;
+    width: 55.57px;
+    height: 59.26px;
+    left: 110px;
+    top: 525px;  
+    margin-left:-10px; 
+    border-radius: 58.2508px;
+}
+#imgData {
+    width:45px;
+    height:40px;
+    z-index:1px;
+}
+.boxMeioTextPublicacoes {
+    position: absolute;
+    width: 400px;
+    height: 530.2px;
+    left: 1300px;
+    top: 50px;
+    font-size:40px;
+}
+.boxRodape {
+    position: relative;
+    width: 100%;
+    height: 114px;
+    left: 0px;
+    top: 100px;
+    background: #ffffff;
+    box-sizing: border-box;
+    z-index:-1;
+}
+.boxPesquisar {
+    position: relative;
+    width: 800px;
+    height: 46px;
+    left: 320px;
+    top: 40px;
+    background: #E3E1E1;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+#tamanhoImg {
+    height: 111px;
+    width: 233px;
+}
+
+#tamanhoRodape {
+    position:relative;
+    height: 180px;
+    width: 280px;
+    left:43%;
+    top:15px;
+}
+
+.boxRodapeText {
+    position: absolute;
+    left: 700px;
+    z-index:1;
+    font-size:20px;
+}
