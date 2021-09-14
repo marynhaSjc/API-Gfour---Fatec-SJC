@@ -1,3 +1,18 @@
+/* BOX PESQUISAR POR */
+
+.qbuscar{
+    position: absolute;
+    width: 660px;
+    height: 46px;
+    left: 160px;
+    top: 0px;
+    
+    background: #E3E1E1;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    }
+
 /* REMOVER LETRA ROXA APÓS CLIQUE NO LINK */
 a {
     color:inherit;
@@ -188,14 +203,14 @@ a {
     padding: 10px 25px;
     display: inline-block;
     font-size: 20px;
-    margin-left:65%;
+    margin-left:50%;
     bottom:5%;
 }
 .textInfoGeral {
     position:absolute;
     font-size:20px;
     left:25px;
-    top:30px;
+    top:230px;
 }
 .buttonExpansao {
     position:absolute;
@@ -270,8 +285,8 @@ a {
     height: 46px;
     left: 320px;
     top: 40px;
-    background: #E3E1E1;
-    border: 2px solid #000000;
+    /*background: #E3E1E1;*/
+    /*border: 2px solid #000000;*/
     box-sizing: border-box;
     border-radius: 10px;
 }
