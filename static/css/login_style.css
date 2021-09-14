@@ -136,7 +136,7 @@ color: #B3171F;
 
 }
 
-.quadradinho{
+#quadradinho{
     position: absolute;
     width: 18px;
     height: 18px;
@@ -186,7 +186,6 @@ color: #B3171F;
     height: 26px;
     left: 51%;
     top: 593px;
-    
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -259,8 +258,54 @@ color: #B3171F;
 }
 
 
-.nav_bar{
-   padding-left: 90%;
-   position: relative;
-   padding-top: 57px;
+a { 
+color: inherit; 
+text-decoration: none;
+ 
+} 
+
+a:hover 
+{
+color:#00A0C6; 
+text-decoration: underline; 
+cursor:pointer;  
+}
+
+#rodape {
+    position: absolute;
+    top: 750px;
+    left: 950px;
+    margin: auto;
+    width: 50%;
+}
+
+.rodape_notas h5{
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+    text-align: justify-all;
+    position: absolute;
+    top: 830px;
+    left: 875px;
+}
+
+.rodape_notas h6{
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+    text-align: justify-all;
+    position: absolute;
+    top: 850px;
+    left: 875px
+}
+
+#button_ent{
+    position: absolute;
+    width: 140px;
+    height: 30px;
+    left: 49.7%;
+    top: 589px;
+    border-radius: 10px;
+    font-size: 12pt;  
+            
 }

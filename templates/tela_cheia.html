@@ -14,6 +14,10 @@
      <!--DIV's do Retangulo e Links-->
     <div class="retangulo_cabeçalho">
         <a href="https://fatecsjc-prd.azurewebsites.net/"><img class="logo"  src="..\..\GRUPO-Gfour---API-ESTUDOS\static\img\Logo_login_tela_cheia.png" alt="Logo Fatec"></a>
+        <a href="login.html"></a>
+
+        <a href="home.html"><button id="voltar">Voltar</button></a>
+        
     </div>
 
     <!--Abas-->
@@ -25,10 +29,22 @@
     <div class="qcargo"></div>
     <div class="qdata"></div>
     <div class="qpesquisar"></div>
-    <div class="qbuscar"></div>
+    <input type="text" class="qbuscar" style="font-size: 14pt;padding-left: 15px; outline: 0px;">
 
-    <span class="default1">default</span>
-    <span class="default2">default</span>
+    <select name="cargo" id="default1" style="border: 0px;margin-left: 15px;background-color: #D4DADA;font-size: 14pt;">
+        <option>PROF</option>
+        <option>DIR</option>
+        <option>CDC</option>
+        <option>SEC</option>
+    </select>
+
+    <select name="data" id="default2" style="border: 0px;margin-left: 15px;background-color: #D4DADA;font-size: 14pt;">
+    <option>Hoje</option>
+    <option>Ontem</option>
+    <option>Sem.passada</option>
+    <option>15 dias atrás</option>
+    </select>
+
     <span class="buscar">Buscar</span>
     
 
@@ -44,7 +60,7 @@
     <!--Mensagens-->
     <div class="linha0"></div>
         <!--Msg 1-->
-        <div class="q1"></div>
+        <input type="checkbox" class="q1">
         <div class="env1">PROF</div>
         <div class="data_pub1">03/09/2021</div>
         <div class="titulo1">Python é Legal</div>
@@ -53,7 +69,7 @@
     
     <div class="linha1"></div>
         <!--Msg 2-->
-        <div class="q2"></div>
+        <input type="checkbox" class="q2">
         <div class="env2">CDC</div>
         <div class="data_pub2">03/09/2021</div>
         <div class="titulo2">Não haverá aula segunda </div>
@@ -63,7 +79,7 @@
 
     <div class="linha2"></div>
         <!--Msg 3-->
-        <div class="q3"></div>
+        <input type="checkbox" class="q3">
         <div class="env3">SEC</div>
         <div class="data_pub3">02/09/2021</div>
         <div class="titulo3">Pendência de Documentação</div>
@@ -77,7 +93,16 @@
 
 
     <!--Rodapé-->
-    <div><img class="gov" src="..\..\GRUPO-Gfour---API-ESTUDOS\static\img\Governo_login_tela_cheia.png" alt=""></div>
+    <div id="rodape">
+        <img src="../static/img/logo_rodape_cadastro.png" alt="logo" " id="logo1">
+      </div>
+      <div class="rodape_notas">
+        <h5>Faculdade de Tecnologia de São José dos Campos - Prof. Jessen Vidal </h5>
+        <h6>2021 S.A Gfour®</h6>
+
+
+
+    <!--<div><img class="gov" src="..\..\GRUPO-Gfour---API-ESTUDOS\static\img\Governo_login_tela_cheia.png" alt=""></div>
     <span class="facul">Faculdade de Tecnologia de São José dos Campos - Prof. Jessen Vidal - 2021 S.A Gfour</span>   
 </html>
 

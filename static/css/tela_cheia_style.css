@@ -14,6 +14,22 @@
     background: url(.png);
 }
 
+#voltar {
+    position: relative;
+    top:30px;
+    left: 1400px;
+    font-size:18px;
+    font-family:Arial;
+    width:128px;
+    height:47px;
+    border-width:3px;
+    color:rgba(0, 0, 0, 1);
+    border-color:rgba(0, 0, 0, 1);
+    border-radius:25px;
+    text-shadow: 1px 1px 0px #2f6627;
+    background-color:transparent;
+}
+
 
 
 .retangulo_cabeçalho{
@@ -176,7 +192,7 @@ box-sizing: border-box;
 border-radius: 10px;
 }
 
-.default1{
+#default1{
 position: absolute;
 width: 100px;
 height: 24px;
@@ -192,7 +208,7 @@ color: #000000;
 }
 
 
-.default2{
+#default2{
 position: absolute;
 width: 99px;
 height: 24px;
@@ -365,7 +381,7 @@ box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 /* Quadrados */
 
-.q1{
+#q1{
 position: absolute;
 width: 35px;
 height: 31px;
@@ -379,7 +395,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 5px;
 }
 
-.q2{
+#q2{
 position: absolute;
 width: 35px;
 height: 31px;
@@ -394,7 +410,7 @@ border-radius: 5px;
 }
 
 
-.q3{
+#q3{
 position: absolute;
 width: 35px;
 height: 31px;
@@ -660,4 +676,45 @@ left: 1550px;
 top: 875px;
 
 background: url(sinal_mais.png);
+}
+
+#rodape {
+    position: absolute;
+    top: 1020px;
+    left: 950px;
+    margin: auto;
+    width: 50%;
+}
+
+.rodape_notas h5{
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+    text-align: justify-all;
+    position: absolute;
+    top: 1100px;
+    left: 775px;
+}
+
+.rodape_notas h6{
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+    text-align: justify-all;
+    position: absolute;
+    top: 1120px;
+    left: 775px
+}
+
+a { 
+    color: inherit; 
+    text-decoration: none;
+     
+} 
+    
+a:hover 
+    {
+    color:#00A0C6; 
+    text-decoration: underline; 
+    cursor:pointer;  
 }
