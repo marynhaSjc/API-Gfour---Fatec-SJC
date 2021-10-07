@@ -1,0 +1,251 @@
+*{
+    margin: 0;
+    padding:0;
+}
+header{
+    position: relative;
+    width: 100%;
+    height: 120px;
+    background: #C4C4C4;
+}
+
+header li {
+    cursor: pointer;
+    padding: 15px;
+}
+
+header nav {
+    display: flex;
+}
+#logo {
+    position: relative;
+    width: 228px;
+    height: 104px;
+    left: 60px;
+    top: 12px;
+    background: url(.png);
+}
+
+#menu {
+    position: relative;
+    left: 100%;
+    width: 100%;
+}
+
+#menu ul li{
+    list-style: initial;
+}
+
+#menu ul li a {
+    position: absolute;
+}
+
+#rodape {
+    position: absolute;
+    top: 710px;
+    left: 540px;
+    margin: auto;
+    width: 50%;
+}
+
+.rodape_notas h5{
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+    text-align: justify-all;
+    position: absolute;
+    top: 770px;
+    left: 400px;
+}
+
+.rodape_notas h6{
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+    text-align: justify-all;
+    position: absolute;
+    top: 790px;
+    left: 570px;
+}
+
+#voltar {
+    position: relative;
+    top:30px;
+    left: 800px;
+    font-size:18px;
+    font-family:Arial;
+    width:128px;
+    height:47px;
+    border-width:3px;
+    color:rgba(0, 0, 0, 1);
+    border-color:rgba(0, 0, 0, 1);
+    border-radius:25px;
+    text-shadow: 1px 1px 0px #2f6627;
+    background-color:transparent;
+}
+
+.container {
+    margin-top: 100px;
+    margin-right: 100px;
+}
+
+.item {
+    margin-left: 500px;
+    height: 3vh;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.item input:hover {
+    background: #177199;
+}
+
+.item1 {
+    width: 15%;
+    height: 30px;
+    margin-top: 30px;
+    margin-left: 540px;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: large;
+    text-decoration: none;
+
+}
+
+.item1:hover {
+    background: linear-gradient(#e10d34, rgb(189, 5, 40));
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+#title_1{
+    position: absolute;
+    left: 475px;
+    top: 145px;
+    font-family:Arial;
+    font-weight: bold;
+    color: red;
+}
+
+#cad_Name{
+    position: absolute;
+    top: 250px;
+    left: 360px;
+    width: 200px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+#cad_Name1{
+    width: 150%;
+    height: 20%;
+    font-size: large;
+    border: solid;
+    border-color: black;
+    border-radius: 5px;
+}
+
+#cad_Email{
+    position: absolute;
+    top: 300px;
+    left: 360px;
+    width: 200px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+#cad_Email1{
+    width: 150%;
+    height: 20%;
+    font-size: large;
+    border: solid;
+    border-color: black;
+    border-radius: 5px;
+}
+
+#cad_Matricula{
+    position: absolute;
+    top: 350px ;
+    left: 360px;
+    width: 150px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+#cad_Matricula1{
+    width: 133%;
+    height: 20%;
+    font-size: large;
+    border: solid;
+    border-color: black;
+    border-radius: 5px;
+}
+
+#cad_Pwd {
+    position: absolute;
+    top: 400px;
+    left: 360px;
+    width: 200px;
+    font-family: Arial;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+#cad_Pwd1{
+    width: 100%;
+    height: 20%;
+    font-size: large;
+    border: solid;
+    border-color: black;
+    border-radius: 5px;
+}
+
+#cad_ConfPwd{
+    position: absolute;
+    top: 450px ;
+    left: 360px;
+    width: 200px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+#cad_ConfPwd1{
+    width: 100%;
+    height: 20%;
+    font-size: large;
+    border: solid;
+    border-color: black;
+    border-radius: 5px;
+}
+
+#cad_Botao{
+    position: absolute;
+    top : 550px;
+    left: 570px;
+    font-size:15px;
+    font-family:Arial;
+    font-weight: bold;
+    width:140px;
+    height:50px;
+    border-width:1px;
+    color:#fff;
+    border-color: #e50e31;
+    border-radius: 10px;
+    box-shadow: #9fb4f2;
+    background:linear-gradient(rgb(217, 8, 44), #c71115);
+}
+
+#cad_Botao a{
+    color: inherit;
+    text-decoration: none;
+}
+
+#cad_Botao:hover {
+    background: linear-gradient(#e10d34, rgb(189, 5, 40));
+}
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="..\static\css\tela_cheia_style.css">
+    <link rel="shortcut icon" href="..\static\img\favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+</head>
+<body>
+
+<header>
+    <a href="https://fatecsjc-prd.azurewebsites.net/"><img class="logo" src="../static/img/Logo1.png" alt=""></a>
+    <div class="btn1">
+        <a href="../templates/login.html"><button id="botao-voltar">VOLTAR</button></a>
+    </div>
+    <div class="btn2">
+        <a href="{{ url_for ('logout') }}"><button id="botao-logout">LOGOUT</button></a>
+    </div>
+</header>
+    <div class="div1">
+        <span class="cargo">Cargo:</span>
+        <span class="data">Data:</span>
+        <div class="qcargo"></div>
+        <div class="qdata"></div>
+        <div class="qpesquisar">
+    </div>
+
+    <select name="cargo" style="border: 0px;margin-left: 15px;background-color: #D4DADA;font-size: 14pt;">
+        <option>PROF</option>
+        <option>DIR</option>
+        <option>CDC</option>
+        <option>SEC</option>
+    </select>
+
+    <input type="date">
+    <input id="pesquisar" type="text" class="qbuscar" name="pesquisar" style="font-size: 14pt;padding-left: 15px; outline: 0px;" placeholder="Pesquisar por">
+    <label  class="qbuscar" for="pesquisar"><i class="fas fa-lock"></i></label>
+    <button class="buscar">
+    <a href="../templates/tela_info.html"><button class="botao1">Buscar</button></a>
+    <div  class="borda"></div>
+   
+   
+    <div class="row mb-5">
+        {%  if postagem|length <= 36 %} <!--limitador-->
+        {% for mostrar in postagem %}
+        <div class="col-sm-2">
+            <div class="card" style="width: 12rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ mostrar['titulo'] }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ mostrar['nome'] }}</h6>
+                    <p class="card-text">{{ mostrar['conteudo'] }}</p>
+                    <a href="{{ url_for ('info') }}" class="card-link">Ler Mensagem</a>
+                    <p>{{ mostrar['data'] }}</p>
+                     <!-- Button trigger modal -->
+
+
+
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    ler mensagem
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <h5 class="card-title">{{ mostrar['titulo'] }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ mostrar['nome'] }}</h6>
+            <p class="card-text">{{ mostrar['conteudo'] }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">arquivo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h2 style="text-align: center">Excesso de mensagens</h2>
+        {% endif %}
+    </div>
+    <div>
+        <a href="{{ url_for ('postar') }}"> <img class="image"  src="../static/img/botao1.png" alt="botao criar"></a>
+    </div>
+
+    <div class="logo1" >
+        <img src="../static/img/Governo_login_tela_cheia.png" alt="logo">
+    </div>
+    <div>
+        <h5 class="h5">Faculdade de Tecnologia de São José dos Campos - Prof. Jessen Vidal </h5>
+        <h6 class="h6">2021 S.A Gfour®</h6>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+</body>
+</html>
