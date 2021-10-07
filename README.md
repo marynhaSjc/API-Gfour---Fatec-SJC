@@ -171,7 +171,44 @@ Rodrigo Ribeiro dos Santos | DT | [Linkedin](https://www.linkedin.com/in/rodrigo
 <span id="prototipo">
 
 ## :desktop_computer: Protótipo
+    
+<h3>Instalação do Protótipo</h3>
 
+Cria uma pasta e realize um clone do repositório
+```
+git clone -b modal --single-branch https://github.com/marynhaSjc/API-Gfour---Fatec-SJC.git
+```
+
+
+Abra sua IDE e crie o ambiente virtual Python:
+```bash(ou cmd)
+python3 -m venv env
+```
+Entrar no diretorio e ativar o ambiente virtual
+```
+cd venv/Scripts/activate
+```
+Voltar no diretorio do programa
+```
+c:\API-Gfour---Fatec-SJC\
+```    
+
+Atualizar o pip
+```
+c:\API-Gfour---Fatec-SJC\python.exe -m pip install --upgrade pip
+```    
+
+Executar o seguinte comando para instalar as dependências necessárias.
+```
+c:\API-Gfour---Fatec-SJC\pip install -r requirements.txt
+```        
+
+Rodar o flask
+```
+c:\API-Gfour---Fatec-SJC\flask run
+```        
+<h3>Demonstração do Protótipo</h3>
+    
 Antes de realmente desenvolver o projeto, foi idealizado um layout pela equipe com base em perguntas feitas ao cliente, foi criado um protótipo em HTML, CSS (que possibilitava algumas interações na interface).
 
 ![](/doc/prototipo/Design_sem_nome_1.gif)
