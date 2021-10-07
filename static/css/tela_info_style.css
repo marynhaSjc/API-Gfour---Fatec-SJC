@@ -1,0 +1,294 @@
+/* DEFAULT LAYOUT */
+
+*{
+    padding-left: 0px;
+    margin: 0px;
+}
+/* REMOVER MARCAÇÕES NO BOTÃO */
+
+a { 
+    color: inherit; 
+    text-decoration: none;
+
+} 
+
+/* MARCAR PARA FECHAR */
+
+a:hover 
+    {
+    color:#ff0000; 
+    text-decoration: underline; 
+    cursor:pointer;
+}
+/* LOGO FATEC CABEÇALHO */
+
+#tamanhoImg {
+    height: 111px;
+    width: 233px;
+}
+
+/* BUTTON FECHAR */
+
+.buttonFechar {
+    position:absolute;
+    background-color:#000000;
+    border-style:solid;
+    font-family: arial;
+    border-color:rgb(0, 0, 0);
+    border-radius:10px;
+    color: rgb(255, 255, 255);
+    padding: 10px 25px;
+    display: inline-block;
+    font-size: 30px;
+    margin-left:1230px;
+    top:20px;
+}
+
+/* TOPO */
+
+.boxTopo {
+    position: relative;
+    width: 100%;
+    height: 114px;
+    left: 0px;
+    top: 0px;
+    background: #C4C4C4;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+
+/* FUNDO TELA DE VISUALIZAÇÃO */
+
+.screenInfo {
+    position: absolute;
+    width: 70%;
+    height: 700px;
+    left: 90px;
+    top: 200px;
+    margin-left:12em;
+
+    background: #F1F3F2;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 61px;
+}
+
+/* POSICIONAMENTO ID */
+
+#screenId {
+    position:absolute;
+    left:70px;
+    top:50px;
+
+    font-size:25px;
+    font-weight:bold;
+}
+
+/* ENVIADO POR: */
+
+#screenEnvio {
+    position:absolute;
+    left:70px;
+    top:150px;
+
+    font-size:25px;
+    font-weight:bold;
+}
+
+/* NOME PROFESSOR */
+
+#screenProf {
+    position:absolute;
+    left:70px;
+    top:200px;
+
+    font-size:25px;
+    font-weight:bold;
+}
+
+/* TITULO */
+
+#screenTitulo {
+    position:absolute;
+    left:400px;
+    top:175px;
+
+    font-size:25px;
+    font-weight:bold;
+}
+
+/* FUNDO COMUNICADO */
+
+.screenComunicado {
+    position: absolute;
+    width: 70%;
+    height: 420px;
+    left: 2%;
+    top: 260px;
+
+    background: #FFFFFF;
+    border: 3px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 83px;
+}
+
+/* DESCRIÇÃO COMUNICADO */
+
+.descricaoComunicado {
+    position:absolute;
+    left:220px;
+    bottom:200px;
+}
+
+/* FUNDO ANEXOS */
+
+.screenAnexos {
+    position: relative;
+    width: 353px;
+    height: 129px;
+    left: 970px;
+    top: 260px;
+
+    background: #EBF2F2;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 46px;
+}
+
+/* TEXTO ANEXO*/
+
+.textoAnexo {
+    position:absolute;
+    font-size:25px;
+    font-weight: bold;
+    left:55px;
+    top:8px;
+}
+
+/* TEXTO TAMANHO*/
+
+.textoTamanho {
+    position:absolute;
+    font-size:25px;
+    font-weight: bold;
+    right:22px;
+    top:8px;
+}
+
+/* NOME ANEXO */
+
+.nomeAnexo {
+    position:absolute;
+    font-size:25px;
+    font-weight: bold;
+    left:55px;
+    top:58px;
+    color:#4EA2AD;
+}
+
+/* TAMANHO ANEXO */
+
+.tamanhoAnexo {
+    position:absolute;
+    font-size:25px;
+    font-weight: bold;
+    right:57px;
+    top:58px;
+}
+
+/* IMAGEM ANEXO */
+
+#imgAnexar {
+    position:absolute;
+    width:25px;
+    height:25px;
+    z-index:1px;
+    bottom:40px;
+    left:13px;
+}
+
+/* DESCRIÇÃO DO TITULO */
+
+#screenDescricaoTitulo {
+    position:absolute;
+    left:540px;
+    top:170px;
+
+    font-size:35px;
+    font-weight:bold;
+}
+
+/* POSICIONAMENTO DATA DE PUBLICAÇÃO */
+
+#screenPublicacao {
+    position:absolute;
+    left:300px;
+    top:50px;
+    
+    font-size:25px;
+    font-weight:bold;
+}
+
+/* POSICIONAMENTO DATA DE PUBLICAÇÃO DD/MM/AA */
+
+#dataPublicacao{
+    position:absolute;
+    left:300px;
+    top:90px;
+
+    font-size:25px;
+    font-weight:bold;
+}
+
+/* POSICIONAMENTO DATA DE EXPIRAÇÃO */
+
+#screenExpiracao {
+    position:absolute;
+    left:730px;
+    top:50px;
+
+    font-size:25px;
+    font-weight:bold;
+}
+
+/* POSICIONAMENTO DATA DE EXPIRAÇÃO DD/MM/AA */
+
+#dataExpiracao{
+    position:absolute;
+    left:730px;
+    top:90px;
+
+    font-size:25px;
+    font-weight:bold;
+}
+
+/* RODAPÉ */
+
+#rodape {
+    position: absolute;
+    top: 1010px;
+    left: 890px;
+    margin: auto;
+    width: 50%;
+}
+
+.rodape_notas h5{
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+    text-align: justify-all;
+    position: absolute;
+    top: 1070px;
+    left: 750px;
+}
+
+.rodape_notas h6{
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+    text-align: justify-all;
+    position: absolute;
+    top: 1090px;
+    left: 750px;
+}
