@@ -18,8 +18,6 @@ engine = create_engine("mysql://root:fatec2021@localhost/fatec")
 if not database_exists(engine.url):
     create_database(engine.url)
 
-
-
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:fatec2021@localhost/fatec'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     db = SQLAlchemy(app)

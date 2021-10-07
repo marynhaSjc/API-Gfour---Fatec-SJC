@@ -56,8 +56,6 @@
                     <p>{{ mostrar['data'] }}</p>
                      <!-- Button trigger modal -->
 
-
-
  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     ler mensagem
   </button>
@@ -67,11 +65,11 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">{{ mostrar['titulo'] }}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <h5 class="card-title">{{ mostrar['titulo'] }}</h5>
+            <!--<h5 class="card-title">{{ mostrar['titulo'] }}</h5>-->
             <h6 class="card-subtitle mb-2 text-muted">{{ mostrar['nome'] }}</h6>
             <p class="card-text">{{ mostrar['conteudo'] }}</p>
         </div>
