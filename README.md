@@ -176,7 +176,7 @@ Rodrigo Ribeiro dos Santos | DT | [Linkedin](https://www.linkedin.com/in/rodrigo
 
 Cria uma pasta e realize um clone do repositório
 ```
-git clone -b modal --single-branch https://github.com/marynhaSjc/API-Gfour---Fatec-SJC.git
+git clone https://github.com/marynhaSjc/API-Gfour---Fatec-SJC.git
 ```
 
 
