@@ -176,6 +176,15 @@ Rodrigo Ribeiro dos Santos | DT | [Linkedin](https://www.linkedin.com/in/rodrigo
 <h3>Instalação do Protótipo</h3>
   
 Para acessar no navegador, acesse:  http://13.82.228.75:5000/  ou se preferir, instale a aplicação seguindo o tutorial abaixo:
+
+<strong> OBS:</strong> Para conectar a base dados, será necessário algumas alterações no MySQL Workbench:
+    
+    user: root 
+    definir o host como: localhost 
+    definir a senha como : fatec2021 
+    
+
+    
     
 Crie uma pasta e realize um clone do repositório
 ```
