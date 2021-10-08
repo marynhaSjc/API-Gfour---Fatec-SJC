@@ -183,7 +183,7 @@ Para acessar no navegador, acesse:  http://13.82.228.75:5000/  ou se preferir, i
     definir o host como: localhost 
     definir a senha como : fatec2021 
     
-
+<img src="/doc/prototipo/usuario_mySQL.png">
     
     
 Crie uma pasta e realize um clone do repositório
@@ -215,7 +215,7 @@ Executar o seguinte comando para instalar as dependências necessárias.
 c:\API-Gfour---Fatec-SJC\pip install -r requirements.txt
 ```        
 
-Rodar o flask
+Rodar o Flask
 ```
 c:\API-Gfour---Fatec-SJC\flask run
 ```        
