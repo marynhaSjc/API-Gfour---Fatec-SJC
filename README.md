@@ -127,9 +127,10 @@ Rodrigo Ribeiro dos Santos | DT | [Linkedin](https://www.linkedin.com/in/rodrigo
 <h3>Entrega da Sprint 2</h3>
 <p> De acordo com o primeiro Feedback, realizamos os seguintes incrementos, baseados no requisitos do cliente e na ordem de prioridades</p> 
 <p> - Páginas com código Phyton e Flask.:heavy_check_mark: </p>   
-<p> - Layout de páginas responsivas: Home, Login, Cadastro, Tela Cheia e Tela de Visualização. :heavy_check_mark:</p>
+<p> - 50% das páginas responsivas :heavy_check_mark:</p>
 <p> - Melhoria no design dos elementos de tela :heavy_check_mark:</p>
 <p> - Alguns elementos já habilitados, como botões, checkbox. :heavy_check_mark:</p>
+<p> - Implementação da aplicação no Servidor Azure :heavy_check_mark:</p>  
 <br>      
  
 <h3>Entrega da Sprint 3</h3>
@@ -173,8 +174,10 @@ Rodrigo Ribeiro dos Santos | DT | [Linkedin](https://www.linkedin.com/in/rodrigo
 ## :desktop_computer: Protótipo
     
 <h3>Instalação do Protótipo</h3>
-
-Cria uma pasta e realize um clone do repositório
+  
+Para acessar no navegador, acesse:  http://13.82.228.75:5000/  ou se preferir, instale a aplicação seguindo o tutorial abaixo:
+    
+Crie uma pasta e realize um clone do repositório
 ```
 git clone https://github.com/marynhaSjc/API-Gfour---Fatec-SJC.git
 ```
@@ -184,11 +187,11 @@ Abra sua IDE e crie o ambiente virtual Python:
 ```bash(ou cmd)
 python3 -m venv env
 ```
-Entrar no diretorio e ativar o ambiente virtual
+Entrar no diretório e ativar o ambiente virtual
 ```
 cd venv/Scripts/activate
 ```
-Voltar no diretorio do programa
+Voltar no diretório do programa
 ```
 c:\API-Gfour---Fatec-SJC\
 ```    
