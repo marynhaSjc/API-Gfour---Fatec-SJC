@@ -22,7 +22,7 @@
 <br />
 
 <div id='equipe'>
-    <h3><img src="/doc/prototipo/g-four.png"> Equipe Gfour</h3>
+    <h3><img src="/doc/prototipo/logo_abacate1.png"> Equipe Gfour</h3>
     
 
 Integrantes da Equipe | Função | Linkedin | Github|
