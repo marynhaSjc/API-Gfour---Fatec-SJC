@@ -34,7 +34,7 @@ Lucas Lessa de Oliveira Silva | DT | [Linkedin](https://www.linkedin.com/in/luca
 Mary Ellen Rodrigues | DT | [Linkedin](https://www.linkedin.com/in/mary-ellen-rodrigues/) | [Github](https://github.com/marynhaSjc)
 Natalia Bessa de Moura | DT | [Linkedin](https://www.linkedin.com/in/natalia-bessa-59b671220/) | [Github](https://github.com/lirabessa)
 Nicolas Lima de Holanda Galindo | DT | [Linkedin](https://www.linkedin.com/in/nicolas-lima-2a75a3220/) | [Github](https://github.com/Nicolas734)   
-Raniel Francisco Santos de Paula | DT |<!-- [Linkedin](https://www.linkedin.com/in/thiago-henrique-ferreira-2499a41a8/)--> | [Github](https://github.com/Raniel-Santos) 
+Raniel Francisco Santos de Paula | DT |[Linkedin](https://www.linkedin.com/in/raniel-santos-204878222/)| [Github](https://github.com/Raniel-Santos) 
 Rodrigo Ribeiro dos Santos | DT | [Linkedin](https://www.linkedin.com/in/rodrigo-ribeiro-5008211b8/) | [Github](https://github.com/rodrigoribeiro027)  
 <br>
 
