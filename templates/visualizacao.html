@@ -41,6 +41,8 @@
     <button class="buscar">
     <a href="../templates/tela_info.html"><button class="botao1">Buscar</button></a>
     <div  class="borda"></div>
+   
+   
     <div class="row mb-5">
         {%  if postagem|length <= 36 %} <!--limitador-->
         {% for mostrar in postagem %}
@@ -52,6 +54,32 @@
                     <p class="card-text">{{ mostrar['conteudo'] }}</p>
                     <a href="{{ url_for ('info') }}" class="card-link">Ler Mensagem</a>
                     <p>{{ mostrar['data'] }}</p>
+                     <!-- Button trigger modal -->
+
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    ler mensagem
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">{{ mostrar['titulo'] }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!--<h5 class="card-title">{{ mostrar['titulo'] }}</h5>-->
+            <h6 class="card-subtitle mb-2 text-muted">{{ mostrar['nome'] }}</h6>
+            <p class="card-text">{{ mostrar['conteudo'] }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">arquivo</button>
+        </div>
+      </div>
+    </div>
+  </div>
                 </div>
             </div>
         </div>

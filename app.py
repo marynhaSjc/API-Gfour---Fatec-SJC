@@ -18,8 +18,6 @@ engine = create_engine("mysql://root:fatec2021@localhost/fatec")
 if not database_exists(engine.url):
     create_database(engine.url)
 
-
-
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:fatec2021@localhost/fatec'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     db = SQLAlchemy(app)
@@ -87,10 +85,13 @@ def cadastro():
         nome = request.form['nome']
         email = request.form['email']
         senha = request.form['pwd']
+        if senha != request.form['cpwd']:
+            return "SENHA DIGITADA NÃO CONFERE"
+        else:
 
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT nome FROM user WHERE nome = % s', (nome,))
-        user = cursor.fetchone()
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('SELECT nome FROM user WHERE nome = % s', (nome,))
+            user = cursor.fetchone()
         if user:
 
             msg = 'Conta já cadastrada !'
@@ -100,7 +101,7 @@ def cadastro():
             msg = 'Nome do usuário deve conter somente caracteres e numeros !'
         elif not nome or not senha or not email:
             msg = "<h1> ´Preencha o formulario</h1>"
-            flash(msg)
+         #   flash(msg)
         else:
             cursor.execute('INSERT INTO user  (nome,email,matricula,senha) values (%s, % s, % s, % s)',
                            (nome, email, matricula, senha,))
@@ -108,7 +109,8 @@ def cadastro():
             msg = 'Cadastro Efetuado com Sucesso !'
     elif request.method == 'POST':
         msg = 'Por favor preencha o formulario'
-    return render_template('cadastro.html', msg=msg)
+    return redirect(url_for('login'))
+    #return render_template('cadastro.html', msg=msg)
 
 
 @app.route('/login')
@@ -124,7 +126,7 @@ def postar():
         conteudo = request.form['conteudo']
 
         if not titulo:
-            flash("Titulo é obrigatorio")
+            flash("Titulo é obrigatorio") #INSERIR MENSAGENS FLASH NO HTML
         else:
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute('INSERT INTO postagem (titulo,conteudo,nome) values (% s, % s, %s)', (titulo, conteudo,nome,))
@@ -147,3 +149,16 @@ def info():
     return render_template('tela_info.html')
 
 
+@app.route("/postagem")
+def postagem():
+    cur = mysql.connection.cursor()
+    postagem = cur.execute("select id,titulo,conteudo,nome from postagem where id = 2")
+    
+    if postagem > 0:
+        postagemDetails = cur .fetchall()
+        return render_template("postagem.html" , postagemDetails=postagemDetails)
+
+@app.route("/cadastrar")
+def cadastrar():
+    return render_template("cadastro.html")
+ 

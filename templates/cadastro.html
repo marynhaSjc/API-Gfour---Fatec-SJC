@@ -1,47 +1,53 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/html">
-    <head>
-        <meta charset="UTF-8">
-        <title>Cadastro</title>
-        <link rel="stylesheet" type="text/css" href="..\static\css\cadastro_style.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-        <link rel="shortcut icon" href="..\static\img\favicon.png" type="image/x-icon">
-    </head>
-    <body>
-        <header>
-            <nav class="menu">
-                <a href="https://fatecsjc-prd.azurewebsites.net/"><img src="..\static\img\Logo_login_tela_cheia.png" alt="Logo" id="logo"></a>
-                <a href="{{ url_for ('index')}}">
-                    <button id="voltar" ">Voltar</button>
-                </a>
-            </nav>
-        </header>
-        <div>
-            <h1 id="title_1">Cadastro de Usuário</h1>
-        </div>
-        <div class="container" ></div>
-            <form action="cadastro" method="POST">
-                <label class="item" for="nome">Nome Usuário</label>
-                <input class="item" type="text" id="nome" name="nome" required>
-                <label class="item" for="email">E-mail</label>
-                <input class="item" type="email" id="email" name="email" required>
-                <label class="item" for="matricula">Matrícula</label>
-                <input class="item" type="text" id="matricula" name="matricula" required>
-                <label class="item" for="pwd">Senha</label>
-                <input class="item" type="password" id="pwd" name="pwd" required>
-                <label class="item" for="cpwd">Confirma Senha</label>
-                <input class="item" type="password" id="cpwd" name="cpwd" required>
-                <input  class="item1" type="submit" value="Cadastro"  >
-            </form>
-        </div>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/Novo_Cadastro.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Cadastro</title>
+</head>
+<body style="background-color: #e1e1e3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" style="font-weight: bold;font-size: x-large;margin-left: 5px;text-align: center"><img src="../static/img/favicon.png" width="40" height="40" class="d-inline-block align-top" alt=""> FATEC SJC </a>
 
 
-        <div id="rodape">
+  </button>
+
+</nav>
+<div class="frame-title">
+    <h4>CADASTRO NOVO USUÁRIO</h4>
+</div>
+<div class="frame">
+    <form action="cadastro" method="post" >
+        <div   class="form-group">
+            <input   type="text" class="form-control form-control-lg" id="nome" name="nome" placeholder="Nome Usuário">
+            <input style="margin-top: 1%"  type="email" class="form-control form-control-lg" id="email" name="email"  placeholder="Email">
+            <input style="margin-top: 1%"  type="text" class="form-control form-control-lg" id="matricula" name="matricula"  placeholder="Matricula">
+            <input style="margin-top: 1%"  type="password" class="form-control form-control-lg" id="pwd" name="pwd"  placeholder="Senha">
+            <input style="margin-top: 1%"  type="password" class="form-control form-control-lg" id="cpwd"  name="cpwd" placeholder="Confirma Senha">
+        </div>
+
+        <div class="frame_buttom_1">
+            <button   type="submit" class="btn btn-secondary btn-lg">CADASTRAR</button></a>
+        </div>
+    </form>
+        <div class="frame_buttom_2">
+            <a href="{{ url_for ('logout')}}"><button   type="button" class="btn btn-secondary btn-lg">SAIR</button></a>
+        </div>
+
+</div>
+
+       <div class="rodape_logo" ">
             <img src="..\static\img\logo_rodape_cadastro.png" alt="logo" " id="logo1">
         </div>
         <div class="rodape_notas">
             <h5>Faculdade de Tecnologia de São José dos Campos - Prof. Jessen Vidal </h5>
             <h6>2021 S.A Gfour®</h6>
         </div>
-    </body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
 </html>
