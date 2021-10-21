@@ -1,0 +1,54 @@
+.arquivar{
+    margin-top: 1%;
+    margin-left: 1%;
+    font-size:15px;
+    font-family:Arial;
+    width:140px;
+    display: block;
+    border-width:2px;
+    color:#fff;
+    border-color:rgba(75, 78, 76, 1);
+    font-weight:bold;
+   
+    text-shadow: 1px 1px 0px rgba(229, 238, 228, 1);
+    background:rgba(196, 196, 196, 1);
+    cursor: pointer;
+    transition-duration: 0.2s;
+
+}
+
+.enviar{
+    display: block;
+    margin-top: 1%;
+    margin-left: 1%;
+    width: 140px;
+    height:28.3px;
+    font-size:15px;
+    font-family:Arial;
+    
+}
+.form-label{
+
+    width: 40vh;
+}
+.logo1{
+    margin-left: 45%;
+    width: 20%;
+    }
+    
+    .h5{
+        text-align: center;
+    }
+    .h6{
+        text-align: center; 
+    }
+
+    .footer{
+        margin-top: 30%;
+
+    }
+    .text{
+        width: 70%;
+        margin: 2vh;
+     
+    }
