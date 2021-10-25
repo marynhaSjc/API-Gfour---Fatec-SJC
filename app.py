@@ -60,12 +60,15 @@ def login():
             # session['loggedin'] = True
             session['nome'] = usuário['nome']
             session['senha'] = usuário['senha']
-            # msg = 'Logged in successfully !'
+            #msg = 'Logged in successfully !'
+            #flash(msg)
             return redirect(url_for('show'))
             # return render_template('show.html', msg=msg)
         else:
-            return 'Nome e ou senha invalidos'
-            # msg = 'Incorrect username / password !'
+            msg = 'Nome Usuário e/ou Senha incorretos  !'
+            flash(msg)
+            #return 'Nome e ou senha invalidos'
+
     return render_template('login.html', msg=msg)
 
 
@@ -86,29 +89,40 @@ def cadastro():
         email = request.form['email']
         senha = request.form['pwd']
         if senha != request.form['cpwd']:
-            return "SENHA DIGITADA NÃO CONFERE"
+            msg = "SENHA DIGITADA NÃO CONFERE"
+            flash(msg)
+            return render_template('cadastro.html')
+            #return "SENHA DIGITADA NÃO CONFERE"
         else:
-
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('SELECT nome FROM user WHERE nome = % s', (nome,))
+            cursor.execute('SELECT matricula FROM user WHERE matricula = % s', (matricula,))
             user = cursor.fetchone()
         if user:
-
             msg = 'Conta já cadastrada !'
+            flash(msg)
+            return render_template('cadastro.html')
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
             msg = 'Endereço de email inválido !'
+            flash(msg)
+            return render_template('cadastro.html')
         elif not re.match(r'[A-Za-z0-9]+', nome):
             msg = 'Nome do usuário deve conter somente caracteres e numeros !'
+            flash(msg)
+            return render_template('cadastro.html')
         elif not nome or not senha or not email:
-            msg = "<h1> ´Preencha o formulario</h1>"
-         #   flash(msg)
+            msg = "Preencha o formulario"
+            flash(msg)
+            return render_template('cadastro.html')
+
         else:
             cursor.execute('INSERT INTO user  (nome,email,matricula,senha) values (%s, % s, % s, % s)',
                            (nome, email, matricula, senha,))
             mysql.connection.commit()
             msg = 'Cadastro Efetuado com Sucesso !'
+            flash(msg)
     elif request.method == 'POST':
         msg = 'Por favor preencha o formulario'
+        flash(msg)
     return redirect(url_for('login'))
     #return render_template('cadastro.html', msg=msg)
 
@@ -127,12 +141,13 @@ def postar():
 
         if not titulo:
             flash("Titulo é obrigatorio") #INSERIR MENSAGENS FLASH NO HTML
+            return render_template ('postar.html')
         else:
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute('INSERT INTO postagem (titulo,conteudo,nome) values (% s, % s, %s)', (titulo, conteudo,nome,))
 
             mysql.connection.commit()
-    return render_template('postar.html')
+    return redirect(url_for('show'))
 
 
 @app.route('/tela_cheia')
@@ -161,4 +176,8 @@ def postagem():
 @app.route("/cadastrar")
 def cadastrar():
     return render_template("cadastro.html")
- 
+
+@app.route("/leitura")
+def leitura():
+
+    return render_template('postar.html')

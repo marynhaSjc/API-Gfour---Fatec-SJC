@@ -19,16 +19,23 @@
 </div>
 <div class="frame">
     <form action="cadastro" method="post" >
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin5%"  class="notification is-danger">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
         <div   class="form-group">
             <input   type="text" class="form-control form-control-lg" id="nome" name="nome" placeholder="Nome Usuário">
             <input style="margin-top: 1%"  type="email" class="form-control form-control-lg" id="email" name="email"  placeholder="Email">
-            <input style="margin-top: 1%"  type="text" class="form-control form-control-lg" id="matricula" name="matricula"  placeholder="Matricula">
+            <input style="margin-top: 1%"  type="text" class="form-control form-control-lg" id="matricula" name="matricula"  placeholder="CPF">
             <input style="margin-top: 1%"  type="password" class="form-control form-control-lg" id="pwd" name="pwd"  placeholder="Senha">
             <input style="margin-top: 1%"  type="password" class="form-control form-control-lg" id="cpwd"  name="cpwd" placeholder="Confirma Senha">
         </div>
 
         <div class="frame_buttom_1">
-            <button   type="submit" class="btn btn-secondary btn-lg">CADASTRAR</button></a>
+            <button   type="submit" class="btn btn-secondary btn-lg">CADASTRAR</button>
         </div>
     </form>
         <div class="frame_buttom_2">

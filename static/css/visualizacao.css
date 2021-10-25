@@ -1,0 +1,30 @@
+header h3{
+    text-align: center;
+    font-family: "Arial Black";
+    font-size: xx-large;
+    color: firebrick;
+    margin-top: 3%;
+}
+
+.info_grupo{
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.logo1{
+margin-left: 45%;
+width: 15%;
+}
+
+.h5{
+    text-align: center;
+}
+.h6{
+    text-align: center; 
+}
+
+.info{
+    margin-right: 5%;
+    margin-top: -1%;
+    display: -o-flex;
+}
