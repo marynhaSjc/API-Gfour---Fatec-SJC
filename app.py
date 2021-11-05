@@ -3,6 +3,7 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
 import os
+from flask_mysqldb import MySQL,MySQLdb
 from sqlalchemy.orm import sessionmaker
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy as db
@@ -11,8 +12,16 @@ from sqlalchemy.sql import func
 from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
 from app import db
+#from funcaoBD import criaBD,authMysql
+
 
 app = Flask(__name__)
+
+usuario = 'root'
+senha = 'fatec2021'
+nome_banco = 'fatec'
+host = 'localhost'
+#criaBD(usuario, senha, nome_banco)
 
 engine = create_engine("mysql://root:fatec2021@localhost/fatec")
 if not database_exists(engine.url):
@@ -21,6 +30,9 @@ if not database_exists(engine.url):
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:fatec2021@localhost/fatec'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     db = SQLAlchemy(app)
+
+
+
 
     class user(db.Model):
         id = db.Column(db.Integer, primary_key= True, autoincrement = True)
@@ -39,9 +51,13 @@ if not database_exists(engine.url):
 
 app.secret_key = 'your secret key'
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'fatec2021'
-app.config['MYSQL_DB'] = 'fatec'
+app.config['MYSQL_USER'] = usuario
+app.config['MYSQL_PASSWORD'] = senha
+app.config['MYSQL_DB'] = nome_banco
+
+
+
+
 
 mysql = MySQL(app)
 #documentos = "D:\\DSM_FATEC\\1_Semestre\\api\\Sistema_Fatec\\documentos"
@@ -97,6 +113,7 @@ def cadastro():
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute('SELECT matricula FROM user WHERE matricula = % s', (matricula,))
             user = cursor.fetchone()
+
         if user:
             msg = 'Conta já cadastrada !'
             flash(msg)
@@ -150,7 +167,7 @@ def postar():
     return redirect(url_for('show'))
 
 
-@app.route('/tela_cheia')
+@app.route('/visualizacao')
 def show():
     nome = session['nome']
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -158,6 +175,27 @@ def show():
     postagem = cursor.fetchall()
     cursor.close()
     return render_template('visualizacao.html', postagem=postagem)
+
+
+#teste de pesquisa
+#@app.route("/ajaxlivesearch",methods=["POST","GET"])
+@app.route("/ajaxlivesearch",methods=["POST","GET"])
+def ajaxlivesearch():
+    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    if request.method == 'POST':
+        search_word = request.form['query']
+        print(search_word)
+        if search_word == '':
+            query = "SELECT * from postagem ORDER BY id"
+            cur.execute(query)
+            postagem = cur.fetchall()
+        else:
+            query = "SELECT * from postagem WHERE titulo LIKE '%{}%' OR conteudo LIKE '%{}%' OR nome LIKE '%{}%' OR data LIKE '%{}' ORDER BY id DESC LIMIT 20".format(search_word,search_word,search_word,search_word)
+            cur.execute(query)
+            numrows = int(cur.rowcount)
+            postagem = cur.fetchall()
+            print(numrows)
+    return jsonify({'htmlresponse': render_template('response.html', postagem=postagem, numrows=numrows)})
 
 @app.route('/info')
 def info():
@@ -181,3 +219,14 @@ def cadastrar():
 def leitura():
 
     return render_template('postar.html')
+
+@app.route("/pesquisar")
+def pesquisar():
+    return render_template('pesquisa.html')
+
+#@app.route("/visualizar")
+#def voltar():
+#    return render_template('visualizacao.html')
+#fazer rota para os botões voltar.
+
+
