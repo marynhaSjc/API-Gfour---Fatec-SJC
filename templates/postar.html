@@ -9,33 +9,58 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <title>Postar</title>
 </head>
-<body>
-<header>
-    <a href="https://fatecsjc-prd.azurewebsites.net/"><img class="logo" src="../static/img/Logo1.png" alt=""></a>
-    <a href="{{ url_for ('logout') }}"> <img src="../static/img/sair.png" class="imgsair" alt=""></a>
-</header>
+<style>
+body{
+    background-color: #e1e1e3;
+}
+</style>
+
+<body class="body">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" style="font-weight: bold;font-size: x-large;margin-left: 5px;text-align: center"><img src="../static/img/favicon.png" width="40" height="40" class="d-inline-block align-top" alt=""> FATEC SJC </a>
+            <form  class="d-flex">
+               <a href="{{ url_for('show')}}">  <button  style="margin-left:-15% ;font-weight: bold"   class="btn btn-secondary" type="button">Voltar</button>
+                <a href="{{ url_for ('logout') }}"  >  <button style="margin-right:;font-weight: bold"  class="btn btn-secondary" type="button">Logout</button></a>
+            </form>
+        </div>
+    </nav>
+
+
 
 <div class="borda">
-    <form action="postar"  name="formulario" method="post" enctype="multipart/form-data">
+    <form action="postar" name="formulario" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><strong>Criar Titulo</strong></label>
-            <select class="form-select1" aria-label="Default select example">
-                <option selected>PROF</option>
-                <option value="1">DIR</option>
-                <option value="2">CDC</option>
-                <option value="3">ALUNOS</option>
-            </select>
+
             <input type="text" class="form-control"  name="titulo" id="exampleFormControlInput1" placeholder="Titulo" value = "{{ request.form['titulo']}}">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label"><strong>Criar Descrição</strong></label>
             <textarea class="form-control"  name="conteudo"  id="exampleFormControlTextarea1" rows="3" placeholder="Descrição">{{ request.form['conteudo'] }}</textarea>
-            <input class="arquivar" type="file" value="Arquivar">
-            <input class="enviar" type="submit" value="Enviar">
+            <br>
+            <div class="container">
+               
+                    <input class="arquivar" style="font-weight: bold;margin-left: 39%; ;" type="file"  title=" " value="Arquivar" >
+                    <input style="font-weight: bold" class="enviar" type="submit" value="Enviar">
+                </div>
+                <br>
+
+
+
+                </div>
+
         </div>
   </form>
-    <a class="btn_enviar" href="{{ url_for ('show')}}"><button id="show">Exibir</button>
+
 </div>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div style="font-weight: bold;color: red;font-family: Arial;margin-left: 50%;margin-top: 2%"  class="notification is-danger">
+        {{ messages[0] }}
+    </div>
+{% endif %}
+{% endwith %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
 </html>
