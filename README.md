@@ -115,6 +115,18 @@ Rodrigo Ribeiro dos Santos | DT | [Linkedin](https://www.linkedin.com/in/rodrigo
 |  05  |  Banco de Dados                               | Implementação Inicial com MySQl        |
     
 
+<h3></h3>    
+    <p> Backlog da Sprint 3</p>
+    
+| Item | Descrição                                     | Como                                   |
+| :--: | :-------------------------------------------: | :------------------------------------: |
+|  01  |  Organização da equipe                        | Distribuição tarefas                   |
+|  02  |  Levantamento de Requisitos                   | Perguntas ao P2                        |
+|  03  |  Cadastro de Usuários                         | Ajustes em alguns campos de cadastro   |
+|  04  |  Recebimento de Mensagens                     | Organização do layout de visualização  |   
+|  05  |  Construção de elementos de filtro e pesquisa | Implementação da função pesquisar e tela|
+    
+
 <h3>Entrega da Sprint 1</h3>
 <p> Após a primeira rodada de análise de requisitos do Cliente P2, segue proposta de interface gráfica do protótipo navegável, contendo :</p>  
 <p> - Layout de páginas : Home, Login, Cadastro, Tela Cheia e Tela de Visualização.:heavy_check_mark: </p>
@@ -134,17 +146,20 @@ Rodrigo Ribeiro dos Santos | DT | [Linkedin](https://www.linkedin.com/in/rodrigo
 <br>      
  
 <h3>Entrega da Sprint 3</h3>
-<p> Já para a Sprint 3, estamos planejado a entregas das funcionalidades abaixo:</p> 
-<p> - Cadastro dos usuários e validações</p>
-<p> - Recebimento de mensagens e organização destas de forma prioritárias </p>
-<p> - Construção dos elementos de filtros e pesquisa </p>
-<p> - Habilitação de todos os botões e checkbox </p>   
+<p> Já para a Sprint 3, estamos planejando a entregas das funcionalidades abaixo:</p> 
+<p> - Cadastro dos usuários :heavy_check_mark: </p>
+<p> - Recebimento de mensagens e organização de visualização :heavy_check_mark: </p>
+<p> - Construção dos elementos de filtros e pesquisa :heavy_check_mark: </p>
+<p> - Criação da Tela de Pesquisa :heavy_check_mark: </p>   
 <br>
     
 <h3>Entrega da Sprint 4</h3>
-<p> Na Sprint 4, pretendemos fazer os ultimos ajustes e entrar na fase de testes do software e enviar para aprovação ao cliente</p> 
-    <p> -Teste de usabilidade </p>
-    <p> -Teste de com usuários chave </p>
+<p> Na Sprint 4, pretendemos fazer os ultimos ajustes e implementações e entrar na fase de testes do software e enviar para aprovação ao cliente</p> 
+    <p> - Implementação da função Anexar </p>
+    <p> - Implementação final dos filtros</p>        
+    <p> - Definição de hierarquia de permissões </p>
+    <p> - Teste de usabilidade </p>
+    <p> - Teste com Usuários </p>
 
 </div>
 
