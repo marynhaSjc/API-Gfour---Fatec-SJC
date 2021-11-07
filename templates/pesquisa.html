@@ -14,7 +14,7 @@
   function load_data(ab)
   {
    $.ajax({
-    url:"/localizar",
+    url:"/ajaxlivesearch",
     method:"POST",
     data:{query:ab},
     success:function(data)
@@ -43,8 +43,8 @@
         <div class="container-fluid">
             <a class="navbar-brand" style="font-weight: bold;font-size: x-large;margin-left: 5px;text-align: center"><img src="../static/img/favicon.png" width="40" height="40" class="d-inline-block align-top" alt=""> FATEC SJC </a>
             <form  class="d-flex">
-                <a href="{{ url_for('show')}}">   <button  style="margin-left:-10% ;font-weight: bold"   class="btn btn-secondary" type="button">Voltar</button></a>
-                <a href="{{ url_for ('logout') }}">  <button style="margin-right:5% ;font-weight: bold"  class="btn btn-secondary" type="button">Logout</button></a>
+                <button  style="margin-right:5% ;font-weight: bold"   class="btn btn-secondary" type="button">Voltar</button>
+                <a href="{{ url_for ('logout') }}"  >  <button style="margin-right:;font-weight: bold"  class="btn btn-secondary" type="button">Logout</button></a>
             </form>
         </div>
     </nav>
@@ -69,6 +69,21 @@
 
         </div>
 
+      <!--  {% for mostrar in postagem %}
+        <div class="media text-muted pt-1" >
+            <img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="..\static\img\favicon.png" data-holder-rendered="true">
+            <strong id="title"  style="text-align: justify;margin-left: 15px;margin-right: -50px"  class="titulo">{{ mostrar['titulo'] }}</strong>
+        </div>
+        <div>
+            <p id="content"   style="margin-top: 1%;margin-left: 4%;text-align: justify;margin-right: 4%">{{ mostrar['conteudo'] }} </p>
+            <strong id="nome" style="margin-top: 8%;margin-left: 4%;color: #4a536e">{{ mostrar['nome'] }}</strong>
+            <small id="hora" style="margin-top: 1%;margin-left: 81%;  color: #2f3947">{{ mostrar['data'] }}</small>
+            <img style="width: 6%;margin-left: 92%;margin-top: 1%"  src="/static/img/download.png" title="Download anexos"  type="download">
+            <br>
+            <br>
+            <hr>
+        </div>fa
+        {% endfor %}-->
 
     </div>
     <footer class="footer">

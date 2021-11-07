@@ -20,7 +20,7 @@ body{
         <div class="container-fluid">
             <a class="navbar-brand" style="font-weight: bold;font-size: x-large;margin-left: 5px;text-align: center"><img src="../static/img/favicon.png" width="40" height="40" class="d-inline-block align-top" alt=""> FATEC SJC </a>
             <form  class="d-flex">
-               <a href="{{ url_for('show')}}">  <button  style="margin-left:-15% ;font-weight: bold"   class="btn btn-secondary" type="button">Voltar</button>
+                <button  style="margin-right:5% ;font-weight: bold"   class="btn btn-secondary" type="button">Voltar</button>
                 <a href="{{ url_for ('logout') }}"  >  <button style="margin-right:;font-weight: bold"  class="btn btn-secondary" type="button">Logout</button></a>
             </form>
         </div>
@@ -32,7 +32,12 @@ body{
     <form action="postar" name="formulario" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><strong>Criar Titulo</strong></label>
-
+            <!--<select class="form-select1" aria-label="Default select example">
+                <option selected>PROF</option>
+                <option value="1">DIR</option>
+                <option value="2">CDC</option>
+                <option value="3">ALUNOS</option>
+            </select>!-->
             <input type="text" class="form-control"  name="titulo" id="exampleFormControlInput1" placeholder="Titulo" value = "{{ request.form['titulo']}}">
         </div>
         <div class="mb-3">
