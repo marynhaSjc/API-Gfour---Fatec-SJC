@@ -29,8 +29,6 @@ Integrantes da Equipe | Função | Linkedin | Github|
 :--------- | :------: | :-------: | :-------:
 Fabricio Cesar Maciel Henriques | PO | [Linkedin](https://www.linkedin.com/in/fabricio-logistica/) | [Github](https://github.com/fabriciosept80)
 Rafael Peressoni Waltrick | SM | [Linkedin](https://www.linkedin.com/in/rafael-p-waltrick-7211b4221) |  [Github](https://github.com/rafawaltrick)
-Carlos Renan Monteiro | DT | [Linkedin](https://www.linkedin.com/in/carlos-renan-monteiro-49a6a0164/) | [Github](https://github.com/Ocarlosmonteiro)
-Lucas Lessa de Oliveira Silva | DT | [Linkedin](https://www.linkedin.com/in/lucas-lessa-a7b1b9221) | [Github](https://github.com/qLessa)
 Mary Ellen Rodrigues | DT | [Linkedin](https://www.linkedin.com/in/mary-ellen-rodrigues/) | [Github](https://github.com/marynhaSjc)
 Natalia Bessa de Moura | DT | [Linkedin](https://www.linkedin.com/in/natalia-bessa-59b671220/) | [Github](https://github.com/lirabessa)
 Nicolas Lima de Holanda Galindo | DT | [Linkedin](https://www.linkedin.com/in/nicolas-lima-2a75a3220/) | [Github](https://github.com/Nicolas734)   
