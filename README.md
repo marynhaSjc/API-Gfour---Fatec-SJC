@@ -46,7 +46,7 @@ Rodrigo Ribeiro dos Santos | DT | [Linkedin](https://www.linkedin.com/in/rodrigo
 <div id='tec' align="center">
 <h3 align="left">Tecnologias</h3>
     <p align="left">Utilizamos até o momento as ferramentas abaixo: </p>
-<img src="/doc/prototipo/tecnologias2.png">
+<img src="/doc/prototipo/tecnologias3.png">
 
 </div>
 
