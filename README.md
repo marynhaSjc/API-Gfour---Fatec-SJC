@@ -182,6 +182,9 @@ Rodrigo Ribeiro dos Santos | DT | [Linkedin](https://www.linkedin.com/in/rodrigo
     
 <h3> Apresentação Vídeo Sprint 2</h3>
 Clique (https://www.youtube.com/watch?v=yACAOmlXCXU) para assistir
+    
+<h3> Apresentação Vídeo Sprint 3</h3>
+Clique (https://www.youtube.com/watch?v=hmmCVpZN3-o) para assistir
 
 </div>
 
