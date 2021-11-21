@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>login</title>
+
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+<link href="../static/css/signin.css" rel="stylesheet">
+<style>
+    .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    }
+
+    @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+    }
+    }
+</style>
+
+</head>
+<body class="text-center">
+    <main class="form-signin">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div style="font-weight: bold;color: red;font-family: Arial;margin5%"  class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+    {% endwith %}
+        <form action="/login" method="POST">
+            <img class="mb-4" src="../static/img/Logo1.png" alt="" width="320" height="220">
+            <h1 class="h3 mb-3 fw-normal">Login</h1>
+            <div class="form-floating">
+                <input type="text" class="form-control" name="nome"  id="floatingInput" placeholder="nome usuário">
+                <label for="floatingInput">Nome</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" name="pwd" id="floatingPassword" placeholder="Senha">
+                <label for="floatingPassword">Senha</label>
+            </div>
+            <div>
+                <button class="btn btn-secondary btn-lg" type="submit" value="login">Entrar</button>
+            </div>
+        </form>
+        <div>
+            <a href="{{ url_for ('cadastrar')}}"><button style="margin-top: 5%"  class="btn btn-secondary btn-lg" type="button" value="Cadastrar">Cadastrar</button></a>
+        </div>
+        <div class="checkbox mb-3" style="margin-top: 5%">
+            <label>
+                <input type="checkbox" value="lembrar"> Lembrar
+            </label>
+        </div>
+        <p class="mt-5 mb-3 text-muted">&copy; Gfour 2021</p>
+
+
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+</body>
+</html>

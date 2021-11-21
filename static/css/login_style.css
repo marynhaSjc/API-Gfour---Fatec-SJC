@@ -1,0 +1,330 @@
+
+*{
+    padding-left: 0px;
+    margin: 0px;
+}
+
+.logo{
+    position: absolute;
+    width: 228px;
+    height: 104px;
+    left: 25px;
+    top: 12px;
+
+    background: url(.png);
+}
+
+
+
+.retangulo_cabeçalho{
+    position: absolute;
+    width: 100%;
+    height: 114px;
+
+
+    background: #C4C4C4;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+
+.SIF{
+    position: absolute;
+    width: 918px;
+    height: 67px;
+    left: 33.3%;
+    top: 168px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+color: #B3171F;
+}
+
+.retangulo_meio{
+    position: absolute;
+    width: 918px;
+    height: 442px;
+    left: 30%;
+    top: 287px;
+
+    background: #F1F3F2;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.quadrado{
+    position: absolute;
+    width: 408px;
+    height: 369px;
+    left: 43%;
+    top: 317px;
+
+    background: #C4C4C4;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.usuario{
+    position: absolute;
+    width: 324px;
+    height: 19px;
+    left: 45%;
+    top: 346px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+}
+
+.ret_usuario{
+    position: absolute;
+    width: 326px;
+    height: 31px;
+    left: 45%;
+    top: 387px;
+    
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.senha{
+    position: absolute;
+    width: 324px;
+    height: 19px;
+    left: 45%;
+    top: 438px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+
+    color: #000000;
+
+}
+
+.ret_senha{
+    position: absolute;
+    width: 326px;
+    height: 31px;
+    left: 45%;
+    top: 477px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+}
+
+#quadradinho{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 49.5%;
+    top: 536px;
+    
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.lembrar{
+    position: absolute;
+    width: 109px;
+    height: 23px;
+    left: 50.7%;
+    top: 536px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    
+    color: #000000;
+    
+}
+
+.quadrado_ent{
+    position: absolute;
+    width: 140px;
+    height: 30px;
+    left: 49.7%;
+    top: 589px;
+    
+    background: #F1F3F2;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.ent{
+    position: absolute;
+    width: 92px;
+    height: 26px;
+    left: 51%;
+    top: 593px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    
+    color: #000000;
+}
+
+.esq_senha{
+    position: absolute;
+    width: 261px;
+    height: 26px;
+    left: 43%;
+    top: 641px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.cad{
+    position: absolute;
+    width: 114px;
+    height: 26px;
+    left: 57%;
+    top: 641px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    
+    color: #000000;
+    
+}
+
+.gov{
+    position: absolute;
+    width: 225px;
+    height: 51px;
+    left: 48%;
+    top: 1100px;
+    
+    background: url(image.png);
+
+}
+
+.facul{
+    position: absolute;
+    width: 1120px;
+    height: 39px;
+    left: 25%;
+    top: 1200px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+
+    color: #000000;
+}
+
+
+a { 
+color: inherit; 
+text-decoration: none;
+ 
+} 
+
+a:hover 
+{
+color:#00A0C6; 
+text-decoration: underline; 
+cursor:pointer;  
+}
+
+#rodape {
+    position: absolute;
+    top: 750px;
+    left: 950px;
+    margin: auto;
+    width: 50%;
+}
+
+.rodape_notas h5{
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+    text-align: justify-all;
+    position: absolute;
+    top: 830px;
+    left: 875px;
+}
+
+.rodape_notas h6{
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+    text-align: justify-all;
+    position: absolute;
+    top: 850px;
+    left: 875px
+}
+
+#button_ent{
+    position: absolute;
+    width: 140px;
+    height: 30px;
+    left: 49.7%;
+    top: 589px;
+    border-radius: 10px;
+    font-size: 12pt;  
+            
+}
+.container {
+    margin-top: 100px;
+    margin-right: 100px;
+    z-index: -1;
+}
+
+.item {
+    margin-top: 200px;
+    margin-left: 800px;
+    height: 3vh;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: Arial;
+    font-weight: bold;
+    z-index: -1;
+}

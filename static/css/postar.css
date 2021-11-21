@@ -1,0 +1,135 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+header{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #C4C4C4;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
+.logo{
+    width: 150px;
+    height: 70px;
+}
+#botao-voltar{
+    font-size:15px;
+    font-family:Arial;
+    width:140px;
+    height:50px;
+    border-width:2px;
+    color:#fff;
+    border-color:rgba(75, 78, 76, 1);
+    font-weight:bold;
+    border-top-left-radius:42px;
+    border-top-right-radius:42px;
+    border-bottom-left-radius:42px;
+    border-bottom-right-radius:42px;
+    text-shadow: 1px 1px 0px rgba(229, 238, 228, 1);
+    background:rgba(196, 196, 196, 1);
+    cursor: pointer;
+    transition-duration: 0.2s;
+   
+}
+#botao-voltar:hover {
+    background: rgba(25, 27, 24, 1)
+}
+#exampleFormControlTextarea1{
+    margin: auto;
+    width: 40%;
+    border: 2px solid ;
+    border-color: black;
+}
+#exampleFormControlInput1{
+    margin: auto;
+    width: 40%;
+    border: 2px solid;
+    border-color: black;
+   
+}
+
+.arquivar{
+    margin-top: 1%;
+    margin-left: 1%;
+    width: 140px;
+    height:28.3px;
+    font-size:15px;
+    font-family:Arial;
+
+}
+
+.form-label{
+    margin-left: 30.1%;
+
+}
+
+
+
+.enviar{
+    margin-top: 1%;
+    margin-left: 1%;
+    width: 140px;
+    height:28.3px;
+    font-size:15px;
+    font-family:Arial;
+    
+}
+
+.exibir{
+    margin-top: 1%;
+    margin-left: 1%;
+    width: 140px;
+    height:28.3px;
+    font-size:15px;
+    font-family:Arial;
+
+}
+
+
+#botao-logout{
+    margin-left: 140vh;
+    font-size:15px;
+    font-family:Arial;
+    width:140px;
+    height:50px;
+    border-width:2px;
+    color:#fff;
+    border-color:rgba(75, 78, 76, 1);
+    font-weight:bold;
+    border-top-left-radius:42px;
+    border-top-right-radius:42px;
+    border-bottom-left-radius:42px;
+    border-bottom-right-radius:42px;
+    text-shadow: 1px 1px 0px rgba(229, 238, 228, 1);
+    background:rgba(196, 196, 196, 1);
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+#botao-logout:hover {
+    background: rgba(25, 27, 24, 1)
+}
+.form-select1{
+    margin-top: 1%;
+    margin-left: 23.1%;
+    width: 140px;
+    height:28.3px;
+
+
+}
+.imgsair{
+ padding-left: 5%;
+ padding-top: 3%;
+ width: 10vh;
+ 
+}
+
+.btn_enviar{
+    margin-top: 80px;
+    margin-left: 800px ;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+    <html lang="pt br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="..\static\css\tela_cheia1.css">
+        <link rel="shortcut icon" href="..\static\img\favicon.png" type="image/x-icon">
+        <title>Tela cheia</title>
+
+
+    </head>
+<body>
+        <!--DIV's do Retangulo e Links-->
+    <header>
+        <a href="https://fatecsjc-prd.azurewebsites.net/"><img class="logo" src="../static/img/Logo1.png" alt=""></a>
+        <a href="../templates/login1.html"><button id="botao-voltar">VOLTAR</button></a>
+    </header>
+    <div class="div1">
+        <span class="cargo">Cargo:</span>
+        <span class="data">Data:</span>
+        <div class="qcargo"></div>
+        <div class="qdata"></div>
+        <div class="qpesquisar"></div>
+
+        <select name="cargo" style="border: 0px;margin-left: 15px;background-color: #D4DADA;font-size: 14pt;">
+            <option>PROF</option>
+            <option>DIR</option>
+            <option>CDC</option>
+            <option>SEC</option>
+        </select>
+
+        <input type="date">
+        <input id="pesquisar" type="text" class="qbuscar" name="pesquisar" style="font-size: 14pt;padding-left: 15px; outline: 0px;" placeholder="Pesquisar por">
+        <label  class="qbuscar" for="pesquisar"><i class="fas fa-lock"></i></label>
+        <button class="buscar">
+        <a href="../templates/tela_info.html"><button class="botao1">Buscar</button></a>
+
+    </div>
+    <div  class="borda">
+    
+        <div>
+        
+                    
+    </div>
+    <div class="postagem">
+        <a href="../templates/tela_info.html">
+
+        <h2>aula  nao vai ter : {{ mostrar['titulo'] }}</h2>
+        <h3>Conteúdo : {{ mostrar['conteudo'] }}</h3>
+        <h3>Autor: {{ mostrar['nome'] }}</h3>
+        <span style="color: #2f6627">Hora da postagem : {{ mostrar['data'] }}</span>
+        <hr>
+        </a>
+    </div>
+    
+    <div class="postagem1">
+        <a href="../templates/tela_info.html">
+            <h2>aula hoje nao vai ter :  mostrar['titulo'</h2>
+            <h3>Conteúdo :  mostrar'conteudo'</h3>
+            <h3>Autor: mostrar['nome'</h3>
+        <span style="color: #2f6627">Hora da postagem : mostrar'data'</span>
+        <hr>
+        </a>
+    </div>
+
+
+    
+    
+    
+
+
+
+    </div>
+
+            <a href="https://www.google.com/"> <img class="image"  src="../static/img/botao1.png" alt="botao criar"></a>
+
+        </div>
+
+    <div id="rodape">
+        <img src="../static/img/Governo_login_tela_cheia.png" alt="logo"  class="logo1">
+    </div>
+    <h5 class="h5">Faculdade de Tecnologia de São José dos Campos - Prof. Jessen Vidal </h5>
+    <h6 class="h6">2021 S.A Gfour®</h6>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<h3>{{numrows}} Registros Encontrados</h3>
+<table class="table table-striped custab">
+  <thead>
+      <tr>
+         <th>Título</th>
+         <th>Conteúdo</th>
+
+        <th>Data</th>
+      </tr>
+  </thead>
+  <tbody>
+{% for row in postagem %}  
+   <tr>
+    <td>{{row.titulo}}</td>
+    <td>{{row.conteudo}}</td>
+
+    <td>{{row.data.strftime('%d/%m/%Y %H:%M:%S')}}</td>
+
+   </tr>
+{% endfor %} 

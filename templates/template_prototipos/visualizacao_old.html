@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualização</title>
+    <link rel="stylesheet" href="../../static/css/visualizacao.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body style="background-color: #e1e1e3">
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="font-weight: bold;font-size: x-large;margin-left: 5px;text-align: center"><img src="../../static/img/favicon.png" width="40" height="40" class="d-inline-block align-top" alt=""> FATEC SJC </a>
+
+      <form  class="d-flex">
+
+      <input   class="pesquisar" type="search" placeholder="Pesquisar..." aria-label="Search">
+      <button   class="btn_pesquisar" type="submit">Pesquisar</button>
+        <button    class="btn_voltar" type="button">Voltar</button>
+        <button     class="btn_logout" type="button">Logout</button>
+
+    </form>
+
+    </div>
+</nav>
+
+<header>
+    <h3> Mensagens Publicadas </h3>
+</header>
+<div class="postar">
+    <a href="{{ url_for ('postar') }}"> <img class="image" src="../../static/img/botao1.png" alt="botao criar"></a>
+</div>
+
+
+<div class="info_grupo">
+<div class="list-group">
+  <a href="#" style="background-color: silver"  class="list-group-item list-group-item-action active" aria-current="true">
+      {% for mostrar in postagem %}
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ mostrar['titulo'] }}</h5>
+
+      <small>{{ mostrar['data'] }}</small>
+    </div>
+    <p class="mb-1">{{ mostrar['conteudo'] }}</p>
+    <small>{{ mostrar['nome'] }}</small>
+  </a>
+    {% endfor %}
+
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

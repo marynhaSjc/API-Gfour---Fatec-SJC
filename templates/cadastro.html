@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/Novo_Cadastro.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Cadastro</title>
+</head>
+<body style="background-color: #e1e1e3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" style="font-weight: bold;font-size: x-large;margin-left: 5px;text-align: center"><img src="../static/img/favicon.png" width="40" height="40" class="d-inline-block align-top" alt=""> FATEC SJC </a>
+
+
+  </button>
+
+</nav>
+<div class="frame-title">
+    <h4>CADASTRO NOVO USUÁRIO</h4>
+</div>
+<div class="frame">
+    <form action="cadastro" method="post" >
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin5%"  class="notification is-danger">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <div   class="form-group">
+            <input   type="text" class="form-control form-control-lg" id="nome" name="nome" placeholder="Nome Usuário">
+            <input style="margin-top: 1%"  type="email" class="form-control form-control-lg" id="email" name="email"  placeholder="Email">
+            <input style="margin-top: 1%"  type="text" class="form-control form-control-lg" id="matricula" name="matricula"  placeholder="CPF">
+            <input style="margin-top: 1%"  type="password" class="form-control form-control-lg" id="pwd" name="pwd"  placeholder="Senha">
+            <input style="margin-top: 1%"  type="password" class="form-control form-control-lg" id="cpwd"  name="cpwd" placeholder="Confirma Senha">
+        </div>
+
+        <div class="frame_buttom_1">
+            <button   type="submit" class="btn btn-secondary btn-lg">CADASTRAR</button>
+        </div>
+    </form>
+        <div class="frame_buttom_2">
+            <a href="{{ url_for ('logout')}}"><button   type="button" class="btn btn-secondary btn-lg">SAIR</button></a>
+        </div>
+
+</div>
+
+       <div class="rodape_logo" ">
+            <img src="..\static\img\logo_rodape_cadastro.png" alt="logo" " id="logo1">
+        </div>
+        <div class="rodape_notas">
+            <h5>Faculdade de Tecnologia de São José dos Campos - Prof. Jessen Vidal </h5>
+            <h6>2021 S.A Gfour®</h6>
+        </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+
