@@ -16,7 +16,9 @@
         <ion-icon id="btn-mobile"  name="menu-outline"></ion-icon>
         <ul id="menu">
             <li><a href="{{ url_for('show')}}">Home</a></li>
+            {% if podePostar %}
             <li><a href="{{ url_for ('leitura') }}">Publicar</a></li>
+            {% endif %}
             <li><a href="{{ url_for ('pesquisar') }}">Pesquisar</a></li>
             <li><a href="{{ url_for ('logout') }}">Logout</a></li>
             <!--<li><a href="contato.html">Contato</a></li>-->
@@ -44,7 +46,13 @@
 <!--<a href="{{ url_for ('leitura') }}"> <button  style="margin-left:25%;margin-top:3%;margin-bottom:5%;width:150px;   font-weight: bold"   class="btn btn-secondary" type="button">Publicar</button></a>
 <a href="{{ url_for ('pesquisar') }}"> <button  style="margin-left:25%;margin-top:3%;margin-bottom:5%;width:150px ;    font-weight: bold"   class="btn btn-secondary" type="button">Pesquisar</button></a>-->
    <h2 style="margin-left: 35%;color: #02125d;font-weight: bold; margin-top: 5%">Mensagens Publicadas</h2>
-
+    {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin5%"  class="notification is-danger">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
     <div class="m-5 bg-secondary">
     {% for mostrar in postagem %}
         {% if loop.index is divisibleby  2 %}
@@ -54,15 +62,20 @@
         {% endif %}
         <div class="media text-muted pt-1" >
             <img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="..\static\img\favicon.png" data-holder-rendered="true">
-            <a  id="title"  style="text-align: justify;margin-left: 15px;margin-right: -50px;color: black;font-weight: bold"  class="titulo">{{ mostrar['postagem_titulo'] }}</a>
+            <a  id="title"  style="text-align: justify;margin-left: 15px;margin-right: -50px;color: black;font-weight: bold"  class="titulo">{{ mostrar['tituloPostagem'] }}</a>
         </div>
         <div>
-            <p id="content"   style="margin-top: 1%;margin-left: 4%;text-align: justify;margin-right: 4%">{{ mostrar['postagem_conteudo'] }} </p>
-            <strong id="nome" style="margin-top: 8%;margin-left: 4%;color: #ab1c1c">{{ mostrar['user_1_nome'] }}</strong>
-            <small id="hora" style="margin-top: 15%;margin-left: 81%; color: #2f3947;font-weight: bold">{{ mostrar['postagem_data'].strftime('%d/%m/%Y %H:%M:%S')}}</small>
-            <button type="submit" name="deletar">Apagar Mensagem</button>
-            {% if mostrar['postagem_pathFile'] %}
-            <a href="{{ url_for('static',filename="documentos/")}}{{ mostrar['postagem_pathFile']}}" download >Download Anexo</a>
+            <p id="content"   style="margin-top: 1%;margin-left: 4%;text-align: justify;margin-right: 4%">{{ mostrar['mensagemPostagem'] }} </p>
+            <strong id="nome" style="margin-top: 8%;margin-left: 4%;color: #ab1c1c">{{ mostrar.usuario.nomeUsuario }}</strong>
+            <small id="hora" style="margin-top: 15%;margin-left: 81%; color: #2f3947;font-weight: bold">{{ mostrar['dataPostagem'].strftime('%d/%m/%Y %H:%M:%S')}}</small>
+
+            {% if id_Usuario == mostrar.usuario.idUsuario | string()  %}
+            <a class="btn btn-danger"    href="/apagar/{{ mostrar.idPostagem }}" >Apagar Mensagem</a>
+            {% endif %}
+
+
+            {% if mostrar.anexo|length > 0 %}
+            <a href="{{ url_for('static',filename="documentos/")}}{{ mostrar.anexo[0]['pathfileAnexo']}}" download >Download Anexo</a>
             {% endif %}
                 <br>
             <br>

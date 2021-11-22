@@ -10,7 +10,7 @@ import sqlalchemy as db
 import mysql.connector
 from sqlalchemy.sql import func
 from sqlalchemy.orm import lazyload
-from sqlalchemy import create_engine,ForeignKey
+from sqlalchemy import create_engine,ForeignKey,or_
 from sqlalchemy_utils import database_exists, create_database
 from app import db
 #from funcaoBD import criaBD,authMysql
@@ -28,12 +28,12 @@ app = Flask(__name__)
 
 usuario = 'root'
 senha = 'fatec2021'
-nome_banco = 'fatec'
+nome_banco = 'dbfatec'
 host = 'localhost'
 #criaBD(usuario, senha, nome_banco)
 
-engine = create_engine("mysql://root:fatec2021@localhost/fatec")
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:fatec2021@localhost/fatec'
+engine = create_engine("mysql://root:fatec2021@localhost/dbfatec")
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:fatec2021@localhost/dbfatec'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
@@ -43,24 +43,58 @@ db = SQLAlchemy(app)
 if not database_exists(engine.url):
     create_database(engine.url)
 
-class User(db.Model):
-    __tablename__ = "user"
-    id = db.Column(db.Integer, primary_key= True, autoincrement = True)
-    matricula = db.Column(db.String(30), primary_key =True)
-    nome = db.Column(db.String(30))
-    email = db.Column(db.String(30))
-    senha = db.Column(db.String(15))
+class Usuario(db.Model):
+    __tablename__="Usuario"
+    idUsuario = db.Column(db.Integer, primary_key= True, autoincrement = True)
+    #matricula = db.Column(db.String(30), primary_key =True)
+    nomeUsuario = db.Column(db.String(30))
+    emailUsuario = db.Column(db.String(30))
+    senhaUsuario = db.Column(db.String(15))
+    tipoUsuario = db.Column(db.String(10))
 
 class Postagem(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    data = db.Column(db.DateTime(timezone=True), server_default=func.now())
-    titulo = db.Column(db.String(100))
-    conteudo = db.Column(db.String(2000))
+    __tablename__ = "Postagem"
+    idPostagem = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    dataPostagem = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    tituloPostagem = db.Column(db.String(100))
+    mensagemPostagem = db.Column(db.String(2000))
     #nome = db.Column(db.String(30))
-    usuario_id = db.Column(db.Integer,ForeignKey("user.id"))
-    #usuario_post = relationship("User")
-    usuario_post = relationship(User, lazy="joined", single_parent=True,remote_side="User.id",uselist=False)
-    pathFile = db.Column(db.String(100))
+    usuario_id = db.Column(db.Integer,ForeignKey("Usuario.idUsuario"))
+    usuario = relationship("Usuario")
+    #usuario_post = relationship("Usuario")
+    #usuario_post = relationship(Usuario, lazy="joined", single_parent=True, remote_side="Usuario.id", uselist=False)
+    #pathFile = db.Column(db.String(100))
+    datafimPostagem = db.Column(db.DateTime())
+    anexo = relationship("Anexo", back_populates="postagem")
+
+class Anexo(db.Model):
+    __tablename__ = "Anexo"
+    idAnexo = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    pathfileAnexo = db.Column(db.String(100))
+    postagem_id = db.Column(db.Integer,ForeignKey("Postagem.idPostagem",ondelete="CASCADE"))
+    postagem = relationship("Postagem",back_populates="anexo",single_parent=True)
+
+class Disciplina(db.Model):
+    __tablename__="Disciplina"
+    idDisciplina = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nomeDisciplina = db.Column(db.String(100))
+
+class Usuario_has_Disciplina(db.Model):
+    usuario_idUsuario = db.Column(db.Integer,ForeignKey("Usuario.idUsuario"),primary_key=True)
+    disciplina_idDisciplina = db.Column(db.Integer,ForeignKey("Disciplina.idDisciplina"),primary_key=True)
+
+class Funcao(db.Model):
+    __tablename__ = "Funcao"
+    idFuncao = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    codFuncao = db.Column(db.String(5))
+    nomeFuncao = db.Column(db.String(100))
+
+class Usuario_has_Funcao(db.Model):
+    usuario_idUsuario = db.Column(db.Integer,ForeignKey("Usuario.idUsuario"),primary_key=True)
+    disciplina_idFuncao = db.Column(db.Integer,ForeignKey("Funcao.idFuncao"),primary_key=True)
+
+
+
 db.create_all()
 
 
@@ -80,15 +114,16 @@ def login():
     if request.method == 'POST':
         nome = request.form['nome']
         senha = request.form['pwd']
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM user WHERE nome = % s AND senha = % s', (nome, senha,))
-        usuário = cursor.fetchone()
-        cursor.close()
+        usuário = Usuario.query.filter_by(nomeUsuario=nome,senhaUsuario=senha).first()
+
+
         if usuário:
             # session['loggedin'] = True
-            session['nome'] = usuário['nome']
-            session['id'] = usuário['id']
-            session['senha'] = usuário['senha']
+            print(usuário.nomeUsuario)
+            session['nome'] = usuário.nomeUsuario
+            session['tipo'] = usuário.tipoUsuario
+            session['id'] = str(usuário.idUsuario)
+            session['senha'] = usuário.senhaUsuario
             #msg = 'Logged in successfully !'
             #flash(msg)
             return redirect(url_for('show'))
@@ -108,7 +143,7 @@ def logout():
 def cadastro():
     msg = ''
     if request.method == 'POST':
-        matricula = request.form['matricula']
+        #matricula = request.form['matricula']
         nome = request.form['nome']
         email = request.form['email']
         senha = request.form['pwd']
@@ -117,16 +152,20 @@ def cadastro():
             flash(msg)
             return render_template('cadastro.html')
         else:
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('SELECT matricula FROM user WHERE matricula = % s', (matricula,))
-            user = cursor.fetchone()
-
+            # cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            # cursor.execute('SELECT matricula FROM user WHERE matricula = % s', (matricula,))
+            # user = cursor.fetchone()
+            user = Usuario.query.filter_by(emailUsuario=email).first()
         if user:
             msg = 'Conta já cadastrada !'
             flash(msg)
             return render_template('cadastro.html')
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
             msg = 'Endereço de email inválido !'
+            flash(msg)
+            return render_template('cadastro.html')
+        elif not email.split("@")[1] == "fatec.sp.gov.br":
+            msg = 'Email não valido !'
             flash(msg)
             return render_template('cadastro.html')
         elif not re.match(r'[A-Za-z0-9]+', nome):
@@ -139,10 +178,9 @@ def cadastro():
             return render_template('cadastro.html')
 
         else:
-            cursor.execute('INSERT INTO user  (nome,email,matricula,senha) values (%s, % s, % s, % s)',
-                           (nome, email, matricula, senha,))
-            mysql.connection.commit()
-            cursor.close()
+            novo_usuario = Usuario(nomeUsuario=nome,emailUsuario=email,senhaUsuario=senha,tipoUsuario="aluno")
+            db.session.add(novo_usuario)
+            db.session.commit()
             msg = 'Cadastro Efetuado com Sucesso !'
             flash(msg)
     elif request.method == 'POST':
@@ -172,8 +210,6 @@ def postar():
             flash("Titulo é obrigatorio") #INSERIR MENSAGENS FLASH NO HTML
             return render_template ('postar.html')
         else:
-            # cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            # cursor.execute('INSERT INTO postagem (titulo,conteudo,usuario_id) values (% s, % s, %s)', (titulo, conteudo,usuario_id,))
             db.session.add(novo_post)
             db.session.commit()
 
@@ -182,22 +218,10 @@ def postar():
 
 @app.route('/visualizacao')
 def show():
-    nome = session['nome']
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute('''SELECT postagem.id AS postagem_id, postagem.data AS postagem_data, postagem.titulo AS postagem_titulo, postagem.conteudo AS postagem_conteudo, postagem.
-usuario_id AS postagem_usuario_id, postagem.`pathFile` AS `postagem_pathFile`, user_1.id AS user_1_id, user_1.matricula AS user_1_matricula, user_1.nome
- AS user_1_nome, user_1.email AS user_1_email, user_1.senha AS user_1_senha
-FROM postagem INNER JOIN user AS user_2 ON user_2.id = postagem.usuario_id LEFT OUTER JOIN user AS user_1 ON user_1.id = postagem.usuario_id order by postagem_data  DESC 
-''')
-    postagem = cursor.fetchall()
-    cursor.close()
-
-    #postagem = Postagem.query.join(Postagem.usuario_post,aliased=True)
-
-
-    #print(postagem)
-
-    return render_template('visualizacao.html', postagem=postagem)
+    id_Usuario = session['id']
+    podePostar = True if session['tipo'] == "professor" else False
+    postagem = Postagem.query.join(Postagem.usuario,aliased=True)
+    return render_template('visualizacao.html', postagem=postagem,podePostar=podePostar,id_Usuario=id_Usuario)
 
 
 @app.route("/localizar",methods=["POST","GET"])
@@ -207,21 +231,32 @@ def localizar():
         search_word = request.form['query']
         print(search_word)
         if search_word == '':
-            query = "SELECT * from postagem ORDER BY id"
-            cursor.execute(query)
-            postagem = cursor.fetchall()
-            cursor.close()
+            postagem = Postagem.query.join(Postagem.usuario,aliased=True)
+
         else:
-            query = ''' SELECT * from postagem
-             WHERE titulo LIKE '%{}%'
-             OR conteudo LIKE '%{}%'
-              OR data LIKE '%{}%'
-              ORDER BY id DESC LIMIT 20'''.format(search_word,search_word,search_word)
-            #query = "SELECT * from postagem WHERE titulo LIKE '%{}%' OR conteudo LIKE '%{}%' OR nome LIKE '%{}%' OR data LIKE '%{}%' ORDER BY id DESC LIMIT 20".format(search_word,search_word,search_word,search_word)
-            cursor.execute(query)
-            numrows = int(cursor.rowcount)
-            postagem = cursor.fetchall()
-            print(numrows)
+            # query = ''' SELECT * from Postagem
+            #  WHERE titulo LIKE '%{}%'
+            #  OR conteudo LIKE '%{}%'
+            #   OR data LIKE '%{}%'
+            #   ORDER BY id DESC LIMIT 20'''.format(search_word,search_word,search_word)
+            # cursor.execute(query)
+            # numrows = int(cursor.rowcount)
+            # postagem = cursor.fetchall()
+            # print(numrows)
+            postagem = Postagem.query.join(Postagem.usuario, aliased=True).filter(
+                or_(
+                    Postagem.tituloPostagem.ilike("%"+search_word+"%"),
+                    Postagem.mensagemPostagem.ilike("%"+search_word+"%")
+                )
+            )
+            print(postagem)
+            numrows = Postagem.query.join(Postagem.usuario, aliased=True).filter(
+                or_(
+                    Postagem.tituloPostagem.ilike("%"+search_word+"%"),
+                    Postagem.mensagemPostagem.ilike("%"+search_word+"%")
+                )
+            ).count()
+
 
     return jsonify({'htmlresponse': render_template('response.html', postagem=postagem, numrows=numrows)})
 
@@ -256,22 +291,23 @@ def get_arquivo(nome_do_arquivo):
     return send_from_directory(documentos,nome_do_arquivo,as_attachment = False)
 
 
-
-    #return render_template('visualizacao.html', postagem=postagem)
-
-#@app.route("/downloads",methods=["GET"])
-#def download_file():
-    #filename = request.form['filename']
-    #print ('filename')
-#return img
-#return send_file(documentos,file,  as_attachment = True)
-    #return send_from_directory(documentos,filename,as_attachment = True)
-
-
-
 @app.route("/prototipo")
 def prototipo():
     return render_template('prototipo.html')
+
+@app.route("/apagar/<id>")
+def apagar(id):
+    usuario_id = session['id']
+    postagem = Postagem.query.filter_by(idPostagem=id).first()
+    print(usuario_id,postagem.usuario_id)
+    if str(usuario_id) == str(postagem.usuario_id):
+        #Postagem.query.filter_by(idPostagem=id).delete()
+        db.session.delete(postagem)
+        db.session.commit()
+        flash("POST APAGADO")
+    else:
+        flash("SEM PERMISSÂO PARA APAGAR O POST")
+    return redirect (url_for('show'))
 
 
 @app.route("/arquivos",methods=["POST"])
@@ -296,14 +332,17 @@ def post_arquivo():
             # mysql.connection.commit()
             # cursor.close()
             novo_post = Postagem(usuario_id=session['id'],
-                                 titulo=request.form['titulo'], conteudo=request.form['conteudo'],
-                                 pathFile=pathFile)
+                                 tituloPostagem=request.form['titulo'], mensagemPostagem=request.form['conteudo'])
+
             db.session.add(novo_post)
+            db.session.flush()
+            novo_anexo = Anexo(pathfileAnexo=pathFile,postagem_id=novo_post.idPostagem)
+            db.session.add(novo_anexo)
             db.session.commit()
             return redirect(url_for('show'))
         else:
             novo_post = Postagem(usuario_id=session['id'],
-                                 titulo=request.form['titulo'], conteudo=request.form['conteudo'])
+                                 tituloPostagem=request.form['titulo'], mensagemPostagem=request.form['conteudo'])
             db.session.add(novo_post)
             db.session.commit()
             return redirect(url_for('show'))
