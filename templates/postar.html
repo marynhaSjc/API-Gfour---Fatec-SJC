@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/novanav.css">
+    <link rel="stylesheet" href="..\static\css\postar.css" type="text/css">
+    <link rel="shortcut icon" href="..\static\img\favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Postar</title>
+</head>
+<style>
+body{
+    background-color: #e1e1e3;
+}
+</style>
+
+<body class="body">
+    <header class="header">
+        <a href="https://fatecsjc-prd.azurewebsites.net/" id="logo"> <img src="../static/img/favicon.png" width="60" height="60" class="d-inline-block align-top" alt="">Fa<span>tec</span></a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="{{ url_for('show')}}">Home</a></li>
+            {% if podePostar %}
+            <li><a href="{{ url_for ('leitura') }}">Publicar</a></li>
+            {% endif %}
+            <li><a href="{{ url_for ('pesquisar') }}">Pesquisar</a></li>
+            <li><a href="{{ url_for ('logout') }}">Logout</a></li>
+        </ul>
+    </header> 
+
+
+<div class="borda">
+    <!--<form action="postar" name="formulario" method="post" enctype="multipart/form-data">-->
+    <form action="http://127.0.0.1:8000/arquivos"
+            method="post"
+            enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><strong>Criar Titulo</strong></label>
+            <input type="text" class="form-control"  name="titulo" id="exampleFormControlInput1" placeholder="Titulo" value = "{{ request.form['titulo']}}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label"><strong>Criar Descrição</strong></label>
+            <textarea class="form-control"  name="conteudo"  id="exampleFormControlTextarea1" rows="3" placeholder="Descrição">{{ request.form['conteudo'] }}</textarea>
+            <br>
+        </div>
+            <div class="container">
+         <input id="meuArquivo"  name="meuArquivo" class="arquivar" style="font-weight: bold;margin-left: 39%" type="file">
+            <input style="font-weight: bold" class="enviar" type="submit" value="Enviar">
+            </div>
+    </form>
+
+
+
+    <!--</form>
+    <div class="container">
+        <form action="http://127.0.0.1:8000/arquivos"
+            method="post"
+            enctype="multipart/form-data">
+
+            <input id="meuArquivo"  name="meuArquivo" class="arquivar" style="font-weight: bold;margin-left: 39%" type="file">
+            <input style="font-weight: bold" class="enviar" type="submit" value="Enviar">
+        /<form>
+    </div>
+    <br>-->
+</div>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div style="font-weight: bold;color: red;font-family: Arial;margin-left: 50%;margin-top: 2%"  class="notification is-danger">
+        {{ messages[0] }}
+    </div>
+{% endif %}
+{% endwith %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+body,ul{
+    margin: 0px;
+    
+}
+
+/*#menu li a{
+    color: #0f1010;
+    text-decoration: none;
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+}
+
+#menu a:hover{
+    color: #ab1c1c;
+    text-decoration: none;
+
+}
+
+#logo{
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-left: 100px;
+    color: #ab1c1c;
+}
+
+#logo span{
+    color: #0f1010;
+
+}
+
+#header{
+    box-sizing: border-box;
+    height: 70px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #888f96;
+}
+#menu{
+    display: flex;
+    list-style: none;
+    gap: .5rem;
+}
+
+
+ a {
+    color: #000;
+  }
+  
+  /* header */
+
+
+  #logo{
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-left: 100px;
+    color: #ab1c1c;
+    text-decoration: none;
+}
+
+#logo span{
+    color: #0f1010;
+
+}
+  
+  .header {
+    background-color:  #888f96;
+    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+    display: block;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 3;
+  }
+  
+  .header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    
+    color: #ab1c1c;
+  }
+  
+  .header li a {
+    display: block;
+    padding: 20px 20px;
+    
+    text-decoration: none;
+    color:black
+  }
+  
+  .header li a:hover,
+  .header .menu-btn:hover {
+   
+    color: #ab1c1c;
+  }
+  
+  .header .logo {
+    display: block;
+    float: left;
+    font-size: 2em;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  
+  /* menu */
+  
+  .header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+    
+  }
+  
+  /* menu icon */
+  
+  .header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 28px 20px;
+    position: relative;
+    user-select: none;
+  }
+  
+  .header .menu-icon .navicon {
+    background: #333;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 18px;
+  }
+  
+  .header .menu-icon .navicon:before,
+  .header .menu-icon .navicon:after {
+    background: #333;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+  }
+  
+  .header .menu-icon .navicon:before {
+    top: 5px;
+  }
+  
+  .header .menu-icon .navicon:after {
+    top: -5px;
+  }
+  
+  /* menu btn */
+  
+  .header .menu-btn {
+    display: none;
+  }
+  
+  .header .menu-btn:checked ~ .menu {
+    max-height: 240px;
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+  }
+  
+  /* 48em = 768px */
+  
+  @media (min-width: 48em) {
+    .header li {
+      float: left;
+    }
+    .header li a {
+      padding: 20px 30px;
+    }
+    .header .menu {
+      clear: none;
+      float: right;
+      max-height: none;
+    }
+    .header .menu-icon {
+      display: none;
+    }
+  }
+
+#menu a{
+    display: block;
+    padding: .5rem;
+}
+
+#btn-mobile{
+    display: none;
+}*/
+
+/*@media (max-width: 500px) {
+    #btn-mobile{
+        display: block;
+        color: #c3cbe5;
+        font-size: 45px;
+    }
+    #menu{
+        display: block;
+        position: absolute;
+        width: 100%;
+        top:700px;
+        right: 0;
+        background: #0f1010;
+        height: 0px;
+        transition: .4s;
+        z-index: 1000;
+        visibility: hidden;
+        overflow-y: hidden;
+
+    }
+    #nav.active #menu{
+        height: calc(100vh - 70px); vh = view port height
+        visibility: visible;
+        overflow-y: auto;
+
+    }
+    #menu a{
+        padding: 1rem 0;
+        margin: 0 2rem;*
+        margin-top: 25px;
+        border-bottom: 1px solid rgb(156, 212, 245);
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
+
