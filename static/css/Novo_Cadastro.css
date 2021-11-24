@@ -83,3 +83,13 @@
     display: inline-flex;
     margin-left: 45%;
 }
+
+#logo1 {
+    
+    width: 270px;
+    height: 104px;
+    filter: contrast(3);
+    left: 60px;
+    top: 12px;
+    
+}

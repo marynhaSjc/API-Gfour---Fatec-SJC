@@ -152,9 +152,6 @@ def cadastro():
             flash(msg)
             return render_template('cadastro.html')
         else:
-            # cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            # cursor.execute('SELECT matricula FROM user WHERE matricula = % s', (matricula,))
-            # user = cursor.fetchone()
             user = Usuario.query.filter_by(emailUsuario=email).first()
         if user:
             msg = 'Conta já cadastrada !'
@@ -199,9 +196,6 @@ def index():
 def postar():
     if request.method == 'POST':
         nome = session['nome']
-        # usuario_id = session['id']
-        # titulo = request.form['titulo']
-        # conteudo = request.form['conteudo']
         novo_post = Postagem(usuario_id=session['id'],
                              titulo=request.form['titulo'],conteudo=request.form['conteudo'])
 
@@ -234,21 +228,11 @@ def localizar():
             postagem = Postagem.query.join(Postagem.usuario,aliased=True)
 
         else:
-            # query = ''' SELECT * from Postagem
-            #  WHERE titulo LIKE '%{}%'
-            #  OR conteudo LIKE '%{}%'
-            #   OR data LIKE '%{}%'
-            #   ORDER BY id DESC LIMIT 20'''.format(search_word,search_word,search_word)
-            # cursor.execute(query)
-            # numrows = int(cursor.rowcount)
-            # postagem = cursor.fetchall()
-            # print(numrows)
             postagem = Postagem.query.join(Postagem.usuario, aliased=True).filter(
                 or_(
                     Postagem.tituloPostagem.ilike("%"+search_word+"%"),
                     Postagem.mensagemPostagem.ilike("%"+search_word+"%"),
                     Postagem.dataPostagem.ilike("%"+search_word+"%")
-                    
                 )
             )
             print(postagem)
@@ -278,13 +262,7 @@ def leitura():
 
 @app.route("/pesquisar")
 def pesquisar():
-    id_Usuario = session['id']
-    podePostar = True if session['tipo'] == "professor" else False
-    postagem = Postagem.query.join(Postagem.usuario,aliased=True)
-    return render_template('pesquisa.html', postagem=postagem,podePostar=podePostar,id_Usuario=id_Usuario)
-
-    #podePostar = True if session['tipo'] == "professor" else False
-    #return render_template('pesquisa.html')
+    return render_template('pesquisa.html')
 
 @app.route("/arquivos",methods = ["GET"])
 def lista_arquivos():
@@ -298,11 +276,6 @@ def lista_arquivos():
 @app.route("/arquivos/<nome_do_arquivo>", methods=["GET,POST"])
 def get_arquivo(nome_do_arquivo):
     return send_from_directory(documentos,nome_do_arquivo,as_attachment = False)
-
-
-# @app.route("/prototipo")
-# def prototipo():
-#     return render_template('prototipo.html')
 
 @app.route("/apagar/<id>")
 def apagar(id):
@@ -336,10 +309,6 @@ def post_arquivo():
         if nome_do_arquivo != '':
             arquivo.save(os.path.join(documentos, nome_do_arquivo))
             pathFile=nome_do_arquivo  #os.path.join(documentos,nome_do_arquivo)
-            # cursor.execute('INSERT INTO postagem (titulo,conteudo,,pathFile) values (%s, % s, %s, %s)', (titulo, conteudo, nome, pathFile,))
-            # #cursor.execute('INSERT INTO postagem (pathFile) values (%s)', (pathFile,))
-            # mysql.connection.commit()
-            # cursor.close()
             novo_post = Postagem(usuario_id=session['id'],
                                  tituloPostagem=request.form['titulo'], mensagemPostagem=request.form['conteudo'])
 

@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../static/css/novanav.css">
     <link rel="stylesheet" href="..\static\css\postar.css" type="text/css">
-    <link rel="shortcut icon" href="..\static\img\favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="..\static\img\favicon1.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Postar</title>
 </head>
 <style>
@@ -29,11 +30,11 @@ body{
             <li><a href="{{ url_for ('pesquisar') }}">Pesquisar</a></li>
             <li><a href="{{ url_for ('logout') }}">Logout</a></li>
         </ul>
-    </header> 
+      </header>
 
 
 <div class="borda">
-    <!--<form action="postar" name="formulario" method="post" enctype="multipart/form-data">-->
+    
     <form action="http://127.0.0.1:8000/arquivos"
             method="post"
             enctype="multipart/form-data">
@@ -48,24 +49,10 @@ body{
             <br>
         </div>
             <div class="container">
-         <input id="meuArquivo"  name="meuArquivo" class="arquivar" style="font-weight: bold;margin-left: 39%" type="file">
+         <input id="meuArquivo"  name="meuArquivo" class="arquivar" style="font-weight: bold;margin-left: 39%;" type="file">
             <input style="font-weight: bold" class="enviar" type="submit" value="Enviar">
             </div>
     </form>
-
-
-
-    <!--</form>
-    <div class="container">
-        <form action="http://127.0.0.1:8000/arquivos"
-            method="post"
-            enctype="multipart/form-data">
-
-            <input id="meuArquivo"  name="meuArquivo" class="arquivar" style="font-weight: bold;margin-left: 39%" type="file">
-            <input style="font-weight: bold" class="enviar" type="submit" value="Enviar">
-        /<form>
-    </div>
-    <br>-->
 </div>
 {% with messages = get_flashed_messages() %}
 {% if messages %}

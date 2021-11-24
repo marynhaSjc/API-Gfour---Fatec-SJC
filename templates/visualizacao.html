@@ -4,19 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Visualização</title>
+    <link rel="shortcut icon" href="..\static\img\favicon1.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/visualizacao.css">
     <link rel="stylesheet" type="text/css" href="../static/css/novanav.css">
-    <link rel="stylesheet" href="../static/css/visualizacao.css">    
+    <link rel="stylesheet" type="text/css" href="../static/css/novanav.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Visualização</title>
+    <style>
+        body::-webkit-scrollbar {
+  width: 15px;               /* width of the entire scrollbar */
+}
 
-    
+body::-webkit-scrollbar-track {
+  background: #ffffff;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #e1e1e3;    /* color of the scroll thumb */
+  border-radius: 5px;       /* roundness of the scroll thumb */
+  border: 1.5px solid rgb(0, 0, 0);  /* creates padding around scroll thumb */
+}
+    </style>
 </head>
-<body>
-
+<body style="background-color: #e1e1e3">
     <header class="header">
         <a href="https://fatecsjc-prd.azurewebsites.net/" id="logo"> <img src="../static/img/favicon.png" width="60" height="60" class="d-inline-block align-top" alt="">Fa<span>tec</span></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
@@ -30,77 +42,43 @@
             <li><a href="{{ url_for ('logout') }}">Logout</a></li>
         </ul>
       </header> 
-
-<!--<header id="header">
-    <a id="logo" href="https://fatecsjc-prd.azurewebsites.net/" title="fatec" ><img src="../static/img/favicon.png" width="60" height="60" class="d-inline-block align-top" alt="">Fa<span>tec</span></a>
-    <nav id="nav">
-        <ion-icon id="btn-mobile"  name="menu-outline"></ion-icon>
-        <ul id="menu">
-            <li><a href="{{ url_for('show')}}">Home</a></li>
-            {% if podePostar %}
-            <li><a href="{{ url_for ('leitura') }}">Publicar</a></li>
-            {% endif %}
-            <li><a href="{{ url_for ('pesquisar') }}">Pesquisar</a></li>
-            <li><a href="{{ url_for ('logout') }}">Logout</a></li>
-            <li><a href="contato.html">Contato</a></li>
-        </ul>
-    </nav>
-</header>-->
-
-
-
-
-
-
-
-<!--<body style="background-color: #e1e1e3">
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" style="font-weight: bold;font-size: x-large;margin-left: 5px;text-align: center"><img src="../static/img/favicon.png" width="40" height="40" class="d-inline-block align-top" alt=""> FATEC SJC </a>
-            <form  class="d-flex">
-              <button  style="margin-right:5% ;font-weight: bold"   class="btn btn-secondary" type="button">Voltar</button>
-                <a href="{{ url_for ('logout') }}"  >  <button style="margin-right:;font-weight: bold"  class="btn btn-secondary" type="button">Logout</button></a>
-            </form>
-        </div>
-    </nav>-->
-
-<!--<a href="{{ url_for ('leitura') }}"> <button  style="margin-left:25%;margin-top:3%;margin-bottom:5%;width:150px;   font-weight: bold"   class="btn btn-secondary" type="button">Publicar</button></a>
-<a href="{{ url_for ('pesquisar') }}"> <button  style="margin-left:25%;margin-top:3%;margin-bottom:5%;width:150px ;    font-weight: bold"   class="btn btn-secondary" type="button">Pesquisar</button></a>-->
-   <h2 style="margin-left: 40%;color: #02125d;font-weight: bold; margin-top: 5%">Mensagens Publicadas</h2>
+   <h2 style="margin-left: 35%;color: #02125d;font-weight: bold; margin-top: 5%">Mensagens Publicadas</h2>
     {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin5%"  class="notification is-danger">
+                <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin:5%;"  class="notification is-danger">
                     {{ messages[0] }}
                 </div>
             {% endif %}
         {% endwith %}
-    <div class="m-5 bg-secondary">
+    <div class="m-5 bg-secondary ">
     {% for mostrar in postagem %}
         {% if loop.index is divisibleby  2 %}
-        <div class="par">
+        <div class="par border border-dark">
         {% else %}
-        <div class="impar">
+        <div class="impar border border-dark">
         {% endif %}
-        <div class="media text-muted pt-1" >
-            <img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="..\static\img\favicon.png" data-holder-rendered="true">
-            <a  id="title"  style="text-align: justify;margin-left: 15px;margin-right: -50px;color: black;font-weight: bold"  class="titulo">{{ mostrar['tituloPostagem'] }}</a>
+        <div  class="media text-muted pt-1" >
+            <img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded border border-dark"   style="width: 50px;height: 35px;margin:10px;filter:contrast(4);" src="..\static\img\favicon.png" data-holder-rendered="true">
+            <a  id="title"  style="text-align: justify;width: 400%;margin-left: 0.8%;padding-right: 5%;font-size: 28px;color: black;font-weight: bold"  class="titulo">{{ mostrar['tituloPostagem'] }}</a>
         </div>
         <div>
-            <p id="content"   style="margin-top: 1%;margin-left: 4%;text-align: justify;margin-right: 4%">{{ mostrar['mensagemPostagem'] }} </p>
-            <strong id="nome" style="margin-top: 8%;margin-left: 4%;color: #ab1c1c">{{ mostrar.usuario.nomeUsuario }}</strong>
-            <small id="hora" style="margin-top: 15%;margin-left: 81%; color: #2f3947;font-weight: bold">{{ mostrar['dataPostagem'].strftime('%d/%m/%Y %H:%M:%S')}}</small>
+            <p id="content"   style="margin-top: 1%;font-size: 18px;;margin-left: 4%;text-align: justify;margin-right: 4%">{{ mostrar['mensagemPostagem'] }} </p>
+            <strong id="nome" style="margin-top: 8%;margin-left: 4%;font-size: 20px;;color: #000000">{{ mostrar.usuario.nomeUsuario }}</strong>
+            <small id="hora" style="font-size: 20px;">{{ mostrar['dataPostagem'].strftime('%d/%m/%Y %H:%M:%S')}}</small>
 
-            {% if id_Usuario == mostrar.usuario.idUsuario | string()  %}
-            <a class="btn btn-danger"    href="/apagar/{{ mostrar.idPostagem }}" >Apagar Mensagem</a>
-            {% endif %}
+            
 
 
             {% if mostrar.anexo|length > 0 %}
-            <a href="{{ url_for('static',filename="documentos/")}}{{ mostrar.anexo[0]['pathfileAnexo']}}" download >Download Anexo</a>
+            <a class="btn btn-success border border-dark" style="margin-left: 1%;;background: rgb(154, 154, 158);" href="{{ url_for('static',filename="documentos/")}}{{ mostrar.anexo[0]['pathfileAnexo']}}" download >Download Anexo</a>
+            {% endif %}
+
+            {% if id_Usuario == mostrar.usuario.idUsuario | string()  %}
+            <a class="btn btn-danger border border-dark" style="margin-left:1%;"   href="/apagar/{{ mostrar.idPostagem }}" >Apagar Mensagem</a>
             {% endif %}
                 <br>
             <br>
-</div>
+        </div>
         </div>
         {% endfor %}
 </div>
