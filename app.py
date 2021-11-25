@@ -326,6 +326,29 @@ def post_arquivo():
             return redirect(url_for('show'))
     return render_template('postar.html')
 
+@app.route('/admin')
+def admin():
+    return render_template('index.html')
+
+@app.route('/inicio')
+def admin_inicio():
+    return render_template('index.html')
+
+@app.route('/add')
+def add():
+    return render_template('add.html')
+
+@app.route('/edit')
+def edit():
+    return render_template('edit.html')    
+
+@app.route('/view')
+def view():
+    return render_template('view.html')
+
+
 
 if __name__=="__main__":
     app.run(debug=True,port=8000)
+
+
