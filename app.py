@@ -329,9 +329,9 @@ def post_arquivo():
 @app.route('/admin')
 def admin():
     #postagem = Postagem.query.join(Postagem.usuario, aliased=True).filter(
-    usuarios = Disciplina.query.join(Disciplina.usuario,aliased=True)
+    #usuarios = Disciplina.query.join(Disciplina.usuario,aliased=True)
     #usuarios = Discip
-    #usuarios = Usuario.query.all()
+    usuarios = Usuario.query.all()
     #materias = Usuario_has_Disciplina.query.all()
     print(usuarios)
     return render_template('index.html',usuarios=usuarios)
