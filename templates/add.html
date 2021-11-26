@@ -36,18 +36,22 @@
   
   <h3 class="page-header">Adicionar Item</h3>
 
-	<form action="index.html">
+	<form action="add" method="post">
 		<div class="row">
 		<div class="form-group col-md-4">
-			<label for="exampleInputEmail1">ID</label>
-			<input type="email" class="form-control" id="exampleInputEmail1" placeholder="novo ID">
-		</div>	
+			<label for="exampleInputEmail1">Nome</label>
+			<input type="text" class="form-control" name="nome"
+                   id="exampleInputEmail1" placeholder="Nome Usuario">
+		</div>
+
 		</div>
 		<div class="row">
 		<div class="form-group col-md-4">
-			<label for="exampleInputEmail1">Nome/Email</label>
-			<input type="email" class="form-control" id="exampleInputEmail1" placeholder="novo Nome/Email">
-		</div>	
+			<label for="exampleInputEmail1">Email</label>
+			<input type="email" class="form-control" name="email"
+                   id="exampleInputEmail1" placeholder="Email">
+		</div>
+
 		</div>
 		<div class="row">
 		<div class="form-group col-md-4">

@@ -51,6 +51,7 @@ class Usuario(db.Model):
     emailUsuario = db.Column(db.String(30))
     senhaUsuario = db.Column(db.String(15))
     tipoUsuario = db.Column(db.String(10))
+    disciplina = relationship("Disciplina", back_populates="usuario")
 
 class Postagem(db.Model):
     __tablename__ = "Postagem"
@@ -78,6 +79,10 @@ class Disciplina(db.Model):
     __tablename__="Disciplina"
     idDisciplina = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nomeDisciplina = db.Column(db.String(100))
+    usuario_id = db.Column(db.Integer, ForeignKey("Usuario.idUsuario"))
+
+    usuario = relationship("Usuario", back_populates="disciplina")
+
 
 class Usuario_has_Disciplina(db.Model):
     usuario_idUsuario = db.Column(db.Integer,ForeignKey("Usuario.idUsuario"),primary_key=True)
@@ -92,7 +97,6 @@ class Funcao(db.Model):
 class Usuario_has_Funcao(db.Model):
     usuario_idUsuario = db.Column(db.Integer,ForeignKey("Usuario.idUsuario"),primary_key=True)
     disciplina_idFuncao = db.Column(db.Integer,ForeignKey("Funcao.idFuncao"),primary_key=True)
-
 
 
 db.create_all()
@@ -143,7 +147,6 @@ def logout():
 def cadastro():
     msg = ''
     if request.method == 'POST':
-        #matricula = request.form['matricula']
         nome = request.form['nome']
         email = request.form['email']
         senha = request.form['pwd']
@@ -235,7 +238,7 @@ def localizar():
                     Postagem.dataPostagem.ilike("%"+search_word+"%")
                 )
             )
-            print(postagem)
+
             numrows = Postagem.query.join(Postagem.usuario, aliased=True).filter(
                 or_(
                     Postagem.tituloPostagem.ilike("%"+search_word+"%"),
@@ -247,9 +250,6 @@ def localizar():
 
     return jsonify({'htmlresponse': render_template('response.html', postagem=postagem, numrows=numrows)})
 
-@app.route('/info')
-def info():
-    return render_template('template_prototipos/tela_info.html')
 
 @app.route("/cadastrar")
 def cadastrar():
@@ -281,7 +281,7 @@ def get_arquivo(nome_do_arquivo):
 def apagar(id):
     usuario_id = session['id']
     postagem = Postagem.query.filter_by(idPostagem=id).first()
-    print(usuario_id,postagem.usuario_id)
+
     if str(usuario_id) == str(postagem.usuario_id):
         #Postagem.query.filter_by(idPostagem=id).delete()
         db.session.delete(postagem)
@@ -328,27 +328,88 @@ def post_arquivo():
 
 @app.route('/admin')
 def admin():
-    return render_template('index.html')
+    #postagem = Postagem.query.join(Postagem.usuario, aliased=True).filter(
+    usuarios = Disciplina.query.join(Disciplina.usuario,aliased=True)
+    #usuarios = Discip
+    #usuarios = Usuario.query.all()
+    #materias = Usuario_has_Disciplina.query.all()
+    print(usuarios)
+    return render_template('index.html',usuarios=usuarios)
 
 @app.route('/inicio')
 def admin_inicio():
     return render_template('index.html')
 
-@app.route('/add')
-def add():
-    return render_template('add.html')
+@app.route("/deletar/<id>")
+def deletar(id):
+    usuario_id = session['id']
+    logado = Usuario.query.filter_by(idUsuario=usuario_id).first()
+    if logado.tipoUsuario == 'admin' or logado.tipoUsuario == 'professor':
+        user = Usuario.query.filter_by(idUsuario=id).first()
+        db.session.delete(user)
+        db.session.commit()
+        msg = 'Usuario apagado'
+        flash(msg)
+        return redirect(url_for('admin'))
+    else:
+        msg = 'Não permitido apagar usuario.'
+        flash(msg)
+    return redirect(url_for('logout'))
 
-@app.route('/edit')
-def edit():
-    return render_template('edit.html')    
 
-@app.route('/view')
-def view():
-    return render_template('view.html')
+
+
+
+@app.route('/edit/<id>',methods=['GET','POST'])
+def edit(id):
+    msg = ''
+    user = Usuario.query.filter_by(idUsuario=id).first()
+
+    if request.method == 'POST':
+        nome = request.form['nome']
+        email = request.form['email']
+        cargo = request.form['cargo']
+
+        if not user:
+            msg = 'Usuario não cadastrado !'
+            flash(msg)
+            return redirect (url_for ('admin'))
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = 'Endereço de email inválido !'
+            flash(msg)
+            return redirect(url_for('edit',id=id ))
+        elif not email.split("@")[1] == "fatec.sp.gov.br":
+            msg = 'Email não valido !'
+            flash(msg)
+            return redirect(url_for('edit',id=id ))
+        elif not re.match(r'[A-Za-z0-9]+', nome):
+            msg = 'Nome do usuário deve conter somente caracteres e numeros !'
+            flash(msg)
+            return redirect(url_for('edit',id=id ))
+        elif not nome or not cargo or not email:
+            msg = "Preencha o formulário"
+            flash(msg)
+            return redirect(url_for('edit',id=id ))
+
+        else:
+            user.nomeUsuario = nome
+            user.emailUsuario = email
+            user.tipoUsuario = cargo
+            db.session.commit()
+            msg = 'Alteração Efetuada com Sucesso !'
+            flash(msg)
+            return redirect(url_for('admin'))
+    return render_template('edit.html',user=user)
+
+@app.route('/view/<id>')
+def view(id):
+    usuario = Usuario.query.filter_by(idUsuario=id).first()
+
+    return render_template('view.html',usuario=usuario)
 
 
 
 if __name__=="__main__":
-    app.run(debug=True,port=8000)
+    app.run(debug=True,port=5000)
 
 

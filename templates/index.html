@@ -4,7 +4,7 @@
  <meta charset="utf-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1">
- <title>CRUD com Bootstrap 3</title>
+ <title>Administrar Usuarios</title>
  <link rel="shortcut icon" href="../img/favicon1.png" type="image/x-icon">
  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
  <link href="../static/css/style.css" rel="stylesheet">
@@ -50,40 +50,30 @@
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Nome/Email</th>
+					<th>Nome</th>
+                    <th>Email</th>
 					<th>Cargo</th>
 					<th>Curso</th>
 					<th class="actions">Ações</th>
 				</tr>
 			</thead>
 			<tbody>
+                {% for usuario in usuarios  %}
+
 				<tr>
-					<td>1</td>
-					<td>rogerio/rogerio@fatec.sp.gov.br</td>
-					<td>Aluno</td>
-					<td>DSM</td>
+					<td>{{usuario.idUsuario}}</td>
+					<td>{{ usuario.nomeUsuario }}</td>
+					<td>{{ usuario.emailUsuario }}</td>
+					<td>{{ usuario.tipoUsuario }}</td>
+                    <td>{{ usuario.nomeDisciplina }}</td>
 					<td class="actions">
-						<a class="btn btn-success btn-xs" href="/view">Visualizar</a>
-						<a class="btn btn-warning btn-xs" href="/edit">Editar</a>
+						<a class="btn btn-success btn-xs" href="/view/{{usuario.idUsuario}}">Visualizar</a>
+						<a class="btn btn-warning btn-xs" href="/edit/{{ usuario.idUsuario }}">Editar</a>
 						<a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>
 					</td>
 				</tr>
-				
-				<tbody>
-					<tr>
-						<td>2</td>
-						<td>roger/ roger@fatec.sp.gov.br</td>
-						<td>Professor</td>
-						<td>ADS</td>
-						<td class="actions">
-							<a class="btn btn-success btn-xs" href="/view">Visualizar</a>
-							<a class="btn btn-warning btn-xs" href="/edit">Editar</a>
-							<a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>
-						</td>
-					</tr>
-				
-				
-				
+                    {% endfor %}
+
 			</tbody>
 		</table>
 	</div>
