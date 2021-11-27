@@ -1,6 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="/add_grupo">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="exampleInputEmail1">Nome do Grupo</label>
+                <input type="text" class="form-control"  name="add_grupo"  required id="exampleInputEmail1" placeholder="Digite o nome do grupo">
+            </div>	
+            </div>
+            <button type="submit" class="btn btn-primary">Criar</button>
+        <table>
+            <tbody>
+                {% for grupo in grupos %}
+
+				<tr>
+					<td>{{grupo.idGrupo}}</td>
+                    <td>{{grupo.nomeGrupo}}</td>
+					
+
+
+					</td>
+				</tr>
+                    {% endfor %}
+
+			</tbody>
+        </table>
+    </form>
+</body>
+</html>
 
 
 
 
-
-<a href="{{ url_for('download_file') }}">Download</a>

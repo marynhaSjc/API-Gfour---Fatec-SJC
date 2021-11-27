@@ -43,6 +43,15 @@ db = SQLAlchemy(app)
 if not database_exists(engine.url):
     create_database(engine.url)
 
+association_table = db.Table('Usuario_has_Grupo',db.Model.metadata,
+                              db.Column('usuario_idUsuario',db.Integer,db.ForeignKey('Usuario.idUsuario')),
+                                db.Column('grupo_idGrupo',db.Integer, db.ForeignKey('Grupo.idGrupo')))
+
+association_usuario_disciplina = db.Table('Usuario_has_Disciplina',db.Model.metadata,
+                                db.Column('usuario_idUsuario',db.Integer,db.ForeignKey('Usuario.idUsuario')),
+                                db.Column('disciplina_idDisciplina',db.Integer,db.ForeignKey('Disciplina.idDisciplina')))
+
+
 class Usuario(db.Model):
     __tablename__="Usuario"
     idUsuario = db.Column(db.Integer, primary_key= True, autoincrement = True)
@@ -51,7 +60,8 @@ class Usuario(db.Model):
     emailUsuario = db.Column(db.String(30))
     senhaUsuario = db.Column(db.String(15))
     tipoUsuario = db.Column(db.String(10))
-    disciplina = relationship("Disciplina", back_populates="usuario")
+    disciplina = relationship("Disciplina", secondary=association_usuario_disciplina)
+    grupo = relationship("Grupo",secondary='Usuario_has_Grupo')
 
 class Postagem(db.Model):
     __tablename__ = "Postagem"
@@ -81,12 +91,12 @@ class Disciplina(db.Model):
     nomeDisciplina = db.Column(db.String(100))
     usuario_id = db.Column(db.Integer, ForeignKey("Usuario.idUsuario"))
 
-    usuario = relationship("Usuario", back_populates="disciplina")
+    usuario = relationship("Usuario", secondary=association_usuario_disciplina)
 
 
-class Usuario_has_Disciplina(db.Model):
-    usuario_idUsuario = db.Column(db.Integer,ForeignKey("Usuario.idUsuario"),primary_key=True)
-    disciplina_idDisciplina = db.Column(db.Integer,ForeignKey("Disciplina.idDisciplina"),primary_key=True)
+# class Usuario_has_Disciplina(db.Model):
+#     usuario_idUsuario = db.Column(db.Integer,ForeignKey("Usuario.idUsuario"),primary_key=True)
+#     disciplina_idDisciplina = db.Column(db.Integer,ForeignKey("Disciplina.idDisciplina"),primary_key=True)
 
 class Funcao(db.Model):
     __tablename__ = "Funcao"
@@ -98,6 +108,12 @@ class Usuario_has_Funcao(db.Model):
     usuario_idUsuario = db.Column(db.Integer,ForeignKey("Usuario.idUsuario"),primary_key=True)
     disciplina_idFuncao = db.Column(db.Integer,ForeignKey("Funcao.idFuncao"),primary_key=True)
 
+class Grupo(db.Model):
+    __tablename__ = "Grupo"
+    idGrupo = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nomeGrupo = db.Column(db.String(100))
+    #postagem = relationship("Postagem",back_populates="grupo")
+    usuario = relationship("Usuario",secondary=association_table)
 
 db.create_all()
 
@@ -257,8 +273,8 @@ def cadastrar():
 
 @app.route("/leitura")
 def leitura():
-
-    return render_template('postar.html')
+    grupos = Grupo.query.all()
+    return render_template('postar.html', grupos=grupos)
 
 @app.route("/pesquisar")
 def pesquisar():
@@ -329,9 +345,9 @@ def post_arquivo():
 @app.route('/admin')
 def admin():
     #postagem = Postagem.query.join(Postagem.usuario, aliased=True).filter(
-    #usuarios = Disciplina.query.join(Disciplina.usuario,aliased=True)
+    usuarios = Usuario.query.join(Usuario.disciplina,aliased=True)
     #usuarios = Discip
-    usuarios = Usuario.query.all()
+    #usuarios = Usuario.query.all()
     #materias = Usuario_has_Disciplina.query.all()
     print(usuarios)
     return render_template('index.html',usuarios=usuarios)
@@ -364,12 +380,19 @@ def deletar(id):
 def edit(id):
     msg = ''
     user = Usuario.query.filter_by(idUsuario=id).first()
-
+    grupos = Grupo.query.all()
+    
+    usuario_grupos = []
+    for grupo in user.grupo:
+        usuario_grupos.append (grupo.idGrupo)
+    
+    
     if request.method == 'POST':
         nome = request.form['nome']
         email = request.form['email']
         cargo = request.form['cargo']
-
+        grupos = request.form.getlist('grupos')
+        
         if not user:
             msg = 'Usuario não cadastrado !'
             flash(msg)
@@ -392,14 +415,21 @@ def edit(id):
             return redirect(url_for('edit',id=id ))
 
         else:
+            g = []
+            for id in grupos:
+                grupo = Grupo.query.filter_by(idGrupo=id).first()
+                g.append(grupo)
+            
+
             user.nomeUsuario = nome
             user.emailUsuario = email
             user.tipoUsuario = cargo
+            user.grupo = g
             db.session.commit()
             msg = 'Alteração Efetuada com Sucesso !'
             flash(msg)
             return redirect(url_for('admin'))
-    return render_template('edit.html',user=user)
+    return render_template('edit.html',user=user, grupos=grupos, usuario_grupos = usuario_grupos)
 
 @app.route('/view/<id>')
 def view(id):
@@ -407,7 +437,16 @@ def view(id):
 
     return render_template('view.html',usuario=usuario)
 
+@app.route('/add_grupo', methods=['POST','GET']) 
+def add_grupo():
+    if request.method == 'POST':
+        grupo = request.form['add_grupo']
+        novo_grupo = Grupo(nomeGrupo=grupo)
+        db.session.add(novo_grupo)
+        db.session.commit()
 
+    grupos = Grupo.query.all()
+    return render_template ('prototipo.html', grupos=grupos)
 
 if __name__=="__main__":
     app.run(debug=True,port=5000)

@@ -64,7 +64,20 @@
         </select>
 	</div>	
 	</div>
+  <fieldset>
+    <legend> Escolha seus Grupos </legend>
+    {%for grupo in grupos %}
 
+
+      <div>
+        <input type = "checkbox" id = "codificação" name = 'grupos' value = "{{grupo.idGrupo}}" {% if grupo.idGrupo in usuario_grupos %} checked {%endif%}>
+        <label for = "coding"> {{grupo.nomeGrupo}} </label>
+        
+      </div>
+
+   
+    {% endfor %}
+  </fieldset>
 
 	
 	<hr />
@@ -79,8 +92,8 @@
   </form>
  </div>
  
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
- <script src="js/jquery.min.js"></script>
- <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
