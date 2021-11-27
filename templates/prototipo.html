@@ -1,27 +1,31 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+</head>-->
+{% extends "base.html" %}
+{% block contents %}
+<title> Criação de Grupos</title>
 <body>
     <form method="post" action="/add_grupo">
         <div class="row">
-            <div class="form-group col-md-4">
-                <label for="exampleInputEmail1">Nome do Grupo</label>
-                <input type="text" class="form-control"  name="add_grupo"  required id="exampleInputEmail1" placeholder="Digite o nome do grupo">
+            <div class="form-group col-md-4" style="margin-left: 20px; margin-top: 20px;">
+                <label for="exampleInputEmail1" style=" font-size: 20px;"><strong> Nome do Grupo </label>
+                <input type="text" style=" font-size: 15px; height: 30px;" class="form-control"  name="add_grupo"  required id="exampleInputEmail1" placeholder="Digite o nome do grupo">
             </div>	
             </div>
-            <button type="submit" class="btn btn-primary">Criar</button>
-        <table>
+            <button type="submit" class="btn btn-primary" style="margin-left: 35px; margin-top: 20px; height: 30px; width: 60px; font-size: 15px;">Criar</button>
+            
+            <table style="margin-left: 35px; margin-top: 20px;">
             <tbody>
                 {% for grupo in grupos %}
 
 				<tr>
-					<td>{{grupo.idGrupo}}</td>
-                    <td>{{grupo.nomeGrupo}}</td>
+					<td style=" font-size: 15px; "">{{grupo.idGrupo}}</td>
+                    <td style=" font-size: 15px; "">{{grupo.nomeGrupo}}</td>
 					
 
 
@@ -31,8 +35,10 @@
 
 			</tbody>
         </table>
+  
     </form>
 </body>
+{% endblock %}
 </html>
 
 

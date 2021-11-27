@@ -1,26 +1,29 @@
-﻿<!DOCTYPE html>
+﻿<!--<!DOCTYPE html>
 <html lang="pt-br">
 <head>
- <meta charset="utf-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <title>Administrar Usuarios</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Administrar Usuarios</title>
 
  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
  <link href="../static/css/style.css" rel="stylesheet">
-</head>
+</head> -->
+{% extends "base.html" %}
+{% block contents %}
+<title>Visualização de Usuario</title>
 <body>
     <form action="cadastro" method="post" >
         {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin:5%;"  class="notification is-danger">
+                <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin:1%;"  class="notification is-danger">
                     {{ messages[0] }}
                 </div>
             {% endif %}
         {% endwith %}
 
 
- <nav class="navbar navbar-inverse navbar-fixed-top">
+ <!--<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
    <div class="navbar-header">
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -41,28 +44,29 @@
    </div>
   </div>
  </nav>
+-->
 
  <div id="main" class="container-fluid">
-  <h3 class="page-header">Usuario #{{usuario.idUsuario }}</h3>
+  <h3 class="page-header" style="font-size: 25px;"><strong>Usuario #{{usuario.idUsuario }}</strong></h3>
   
   <div class="row">
     <div class="col-md-3">
-      <p><strong>ID</strong></p>
-  	  <p>{{ usuario.idUsuario }}</p>
+      <p style="font-size: 15px;"><strong>ID</strong></p>
+  	  <p style="font-size: 15px;">{{ usuario.idUsuario }}</p>
     </div>
 	
 	<div class="col-md-3">
-      <p><strong>Nome</strong></p>
-  	  <p>{{ usuario.nomeUsuario }}</p>
+      <p style="font-size: 15px;"><strong>Nome</strong></p>
+  	  <p style="font-size: 15px;">{{ usuario.nomeUsuario }}</p>
     </div>
       <div class="col-md-3">
-      <p><strong>Email</strong></p>
-  	  <p>{{ usuario.emailUsuario }}</p>
+      <p style="font-size: 15px;"><strong>Email</strong></p>
+  	  <p style="font-size: 15px;">{{ usuario.emailUsuario }}</p>
     </div>
 	
 	<div class="col-md-3">
-      <p><strong>Tipo Usuário</strong></p>
-  	  <p>{{ usuario.tipoUsuario }}</p>
+      <p style="font-size: 15px;"><strong>Tipo Usuário</strong></p>
+  	  <p style="font-size: 15px;">{{ usuario.tipoUsuario }}</p>
     </div>
 
  </div>
@@ -70,9 +74,9 @@
  <hr />
  <div id="actions" class="row">
    <div class="col-md-12">
-     <a href="/admin" class="btn btn-primary">Fechar</a>
-	 <a href="/edit/{{ usuario.idUsuario }}" class="btn btn-primary">Editar</a>
-	 <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal" onclick="confirmar_delete({{ usuario.idUsuario }})" >Excluir</a>
+     <a href="/admin" class="btn btn-primary" style="height: 31px; font-size: 15px;">Fechar</a>
+	 <a href="/edit/{{ usuario.idUsuario }}" class="btn btn-primary" style="height: 31px; font-size: 15px;">Editar</a>
+	 <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal" onclick="confirmar_delete({{ usuario.idUsuario }})"style="height: 31px; font-size: 15px;" >Excluir</a>
    </div>
  </div>
      <!-- Modal -->
@@ -80,15 +84,15 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="modalLabel">Excluir Item</h4>
+        <button type="button" class="close"  data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel" style="font-size: 15px; margin-left: 360px;"><strong>Excluir Item</strong></h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="font-size: 15px;">
         Deseja realmente excluir este item?
       </div>
       <div class="modal-footer">
-        <a id="confirmar" class="btn btn-primary">Sim</a>
-	<button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
+        <a id="confirmar" class="btn btn-primary" style="height: 31px; font-size: 15px;">Sim</a>
+	<button type="button" class="btn btn-default" data-dismiss="modal" style="height: 31px; font-size: 15px;">N&atilde;o</button>
       </div>
     </div>
   </div>
@@ -102,5 +106,7 @@
 </script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 </body>
+{% endblock %}
 </html>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!--<!DOCTYPE html>
 <html lang="pt-br">
 <head>
  <meta charset="utf-8">
@@ -9,7 +9,7 @@
  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
  <link href="../static/css/style.css" rel="stylesheet">
 </head>
-<body>
+
 
  <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
@@ -30,14 +30,24 @@
     </ul>
    </div>
   </div>
- </nav>
-
- <div id="main" class="container-fluid" style="margin-top: 50px">
+ </nav>-->
+ {% extends "base.html" %}
+ {% block contents %}
+ <title>Adminstração</title>
+<body>
+ {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin:1%;"  class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+{% endwith %}
+ <div id="main" class="container-fluid" style="margin-top: 20px">
  
  	
 			
 		
-			<a href="/add_grupo" class="btn btn-primary pull-right h2">Novo Grupo</a>
+			<a href="/add_grupo" class="btn btn-primary pull-right h4" style="height: 31px; font-size: 15px;" >Novo Grupo</a>
 		
 		</div>
 	</div> <!-- /#top -->
@@ -47,21 +57,21 @@
  	<div id="list" class="row">
 	
 	<div class="table-responsive col-md-12">
-		<table class="table table-striped" cellspacing="0" cellpadding="0">
+		<table class="table table-striped" cellspacing="0" cellpadding="0" >
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>Nome</th>
-                    <th>Email</th>
-					<th>Cargo</th>
-					<th>Grupo</th>
-					<th class="actions">Ações</th>
+					<th style="font-size: 15px;">ID</th>
+					<th style="font-size: 15px;">Nome</th>
+                    <th style="font-size: 15px;">Email</th>
+					<th style="font-size: 15px;">Cargo</th>
+					<th style="font-size: 15px;">Grupo</th>
+					<th style="font-size: 15px;" class="actions">Ações</th>
 				</tr>
 			</thead>
 			<tbody>
                 {% for usuario in usuarios  %}
 
-				<tr>
+				<tr style="font-size: 15px;">
 					<td>{{usuario.idUsuario}}</td>
 					<td>{{ usuario.nomeUsuario }}</td>
 					<td>{{ usuario.emailUsuario }}</td>
@@ -73,9 +83,9 @@
 					</td>
 
 					<td class="actions">
-						<a class="btn btn-success btn-xs" href="/view/{{usuario.idUsuario}}">Visualizar</a>
-						<a class="btn btn-warning btn-xs" href="/edit/{{ usuario.idUsuario }}">Editar</a>
-						<a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#deletemodal">Excluir</a>
+						<a style="margin-left: -40px; font-size: 12px;" class="btn btn-success btn-xs" href="/view/{{usuario.idUsuario}}">Visualizar</a>
+						<a style="font-size: 12px;" class="btn btn-warning btn-xs" href="/edit/{{ usuario.idUsuario }}">Editar</a>
+						<a style="font-size: 12px;" class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#deletemodal">Excluir</a>
 					</td>
 				</tr>
                     {% endfor %}
@@ -111,7 +121,8 @@
 
 
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <!--<<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>>-->
 </body>
 </html>
+{% endblock %}
