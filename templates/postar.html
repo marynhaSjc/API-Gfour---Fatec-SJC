@@ -37,7 +37,7 @@ body{
 
 <div class="borda">
     
-    <form action="http://127.0.0.1:8000/arquivos"
+    <form action="/arquivos"
             method="post"
             enctype="multipart/form-data">
 
@@ -53,7 +53,7 @@ body{
 
         <div class="col-5 form-group m-auto">
             <label for="exampleFormControlTextarea1" class="text-left d-block"><strong>Selecione os Grupos </strong></label>
-            <select class="js-example-basic-multiple form-control" name="states[]" multiple="multiple">
+            <select class="js-example-basic-multiple form-control" name="grupos" multiple="multiple">
                 {%for grupo in grupos %}
 
                 <option value="{{grupo.idGrupo}}">{{grupo.nomeGrupo}}</option>

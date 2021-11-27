@@ -43,6 +43,14 @@ body::-webkit-scrollbar-thumb {
         </ul>
       </header> 
    <h2 style="margin-left: 35%;color: #02125d;font-weight: bold; margin-top: 5%">Mensagens Publicadas</h2>
+   <select class="js-example-basic form-control" name="grupos" id="filtrar_grupo">
+       <option value="" disabled selected >Selecione o Grupo</option>
+    {%for grupo in grupos %}
+
+    <option value="{{grupo.idGrupo}}">{{grupo.nomeGrupo}}</option>
+    {% endfor %}
+  </select>
+
     {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin:5%;"  class="notification is-danger">
@@ -83,4 +91,9 @@ body::-webkit-scrollbar-thumb {
         {% endfor %}
 </div>
 </body>
+<script>
+    $('#filtrar_grupo').on('change',function(){
+        $(location).prop('href','/visualizacao/'+this.value)
+    })
+</script>
 </html>

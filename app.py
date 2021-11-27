@@ -51,6 +51,10 @@ association_usuario_disciplina = db.Table('Usuario_has_Disciplina',db.Model.meta
                                 db.Column('usuario_idUsuario',db.Integer,db.ForeignKey('Usuario.idUsuario')),
                                 db.Column('disciplina_idDisciplina',db.Integer,db.ForeignKey('Disciplina.idDisciplina')))
 
+association_postagem_grupo = db.Table('Postagem_has_Grupo',db.Model.metadata,
+                                db.Column('postagem_idPostagem',db.Integer,db.ForeignKey('Postagem.idPostagem')),
+                                db.Column('grupo_idGrupo',db.Integer,db.ForeignKey('Grupo.idGrupo')))
+
 
 class Usuario(db.Model):
     __tablename__="Usuario"
@@ -77,6 +81,8 @@ class Postagem(db.Model):
     #pathFile = db.Column(db.String(100))
     datafimPostagem = db.Column(db.DateTime())
     anexo = relationship("Anexo", back_populates="postagem")
+    grupo = relationship("Grupo", secondary=association_postagem_grupo)
+    
 
 class Anexo(db.Model):
     __tablename__ = "Anexo"
@@ -114,6 +120,7 @@ class Grupo(db.Model):
     nomeGrupo = db.Column(db.String(100))
     #postagem = relationship("Postagem",back_populates="grupo")
     usuario = relationship("Usuario",secondary=association_table)
+    postagem = relationship("Postagem", secondary=association_postagem_grupo)
 
 db.create_all()
 
@@ -228,13 +235,21 @@ def postar():
 
     return redirect(url_for('show'))
 
-
+@app.route('/visualizacao/<id>')
 @app.route('/visualizacao')
-def show():
+def show(id=None):
     id_Usuario = session['id']
     podePostar = True if session['tipo'] == "professor" else False
-    postagem = Postagem.query.join(Postagem.usuario,aliased=True)
-    return render_template('visualizacao.html', postagem=postagem,podePostar=podePostar,id_Usuario=id_Usuario)
+    grupos = Grupo.query.join(association_table).filter(
+        (association_table.c.usuario_idUsuario == id_Usuario)&(association_table.c.grupo_idGrupo == Grupo.idGrupo)
+    ).all()
+
+    postagem = Postagem.query.join(association_postagem_grupo).filter(
+        (association_postagem_grupo.c.grupo_idGrupo == id)&(association_postagem_grupo.c.postagem_idPostagem == Postagem.idPostagem)
+    ).all()
+    print(postagem)
+
+    return render_template('visualizacao.html', postagem=postagem,podePostar=podePostar,id_Usuario=id_Usuario, grupos=grupos)
 
 
 @app.route("/localizar",methods=["POST","GET"])
@@ -314,6 +329,8 @@ def post_arquivo():
         nome = session['nome']
         titulo = request.form['titulo']
         conteudo = request.form['conteudo']
+        grupos = request.form.getlist('grupos')
+
 
         if not titulo:
             flash("Titulo é obrigatorio")  # INSERIR MENSAGENS FLASH NO HTML
@@ -322,10 +339,15 @@ def post_arquivo():
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         arquivo = request.files.get("meuArquivo")
         nome_do_arquivo = arquivo.filename
+        grupos_salvos = []
+        for grupo in grupos:
+            g=Grupo.query.filter_by(idGrupo=grupo).first()
+            grupos_salvos.append(g)
+
         if nome_do_arquivo != '':
             arquivo.save(os.path.join(documentos, nome_do_arquivo))
             pathFile=nome_do_arquivo  #os.path.join(documentos,nome_do_arquivo)
-            novo_post = Postagem(usuario_id=session['id'],
+            novo_post = Postagem(usuario_id=session['id'],grupo=grupos_salvos,
                                  tituloPostagem=request.form['titulo'], mensagemPostagem=request.form['conteudo'])
 
             db.session.add(novo_post)
@@ -335,7 +357,8 @@ def post_arquivo():
             db.session.commit()
             return redirect(url_for('show'))
         else:
-            novo_post = Postagem(usuario_id=session['id'],
+
+            novo_post = Postagem(usuario_id=session['id'],grupo=grupos_salvos,
                                  tituloPostagem=request.form['titulo'], mensagemPostagem=request.form['conteudo'])
             db.session.add(novo_post)
             db.session.commit()
@@ -344,11 +367,9 @@ def post_arquivo():
 
 @app.route('/admin')
 def admin():
-    #postagem = Postagem.query.join(Postagem.usuario, aliased=True).filter(
-    usuarios = Usuario.query.join(Usuario.disciplina,aliased=True)
-    #usuarios = Discip
-    #usuarios = Usuario.query.all()
-    #materias = Usuario_has_Disciplina.query.all()
+    
+    usuarios = Usuario.query.join(Usuario.grupo,aliased=True)
+
     print(usuarios)
     return render_template('index.html',usuarios=usuarios)
 
