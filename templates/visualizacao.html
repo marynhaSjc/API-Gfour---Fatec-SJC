@@ -45,21 +45,21 @@ body::-webkit-scrollbar-thumb {
             {% endif %}
         </ul>
       </header> 
-   <h2 class="text-center" style="color: #02125d;">Mensagens Publicadas</h2>
-   <select class="js-example-basic form-control" style="width: 45%;margin-left: 30%;" name="grupos" id="filtrar_grupo">
+   <h2 class="text-center" style="color: #02125d; margin-left: 0%; margin-top: 1%;">Mensagens Publicadas</h2>
+   <select class="js-example-basic form-control" style="width: 45%;margin-left: 30%; margin-top: 1%" name="grupos" id="filtrar_grupo">
        <option value="" disabled selected >Selecione o Grupo</option>
-       <option value="">Geral</option>
+       <option value="" >Geral</option>
     {%for grupo in grupos %}
 
     <option value="{{grupo.idGrupo}}">{{grupo.nomeGrupo}}</option>
     {% endfor %}
   </select>
     
-   <h2 class="text-center">{{nome_grupo }}</h2>
+   <h2 class="text-center" style = "margin-top: 1%"">{{nome_grupo }}</h2>
   
     {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin:5%;"  class="notification is-danger">
+                <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial; margin: 1%;"  class="notification is-danger">
                     {{ messages[0] }}
                 </div>
             {% endif %}
