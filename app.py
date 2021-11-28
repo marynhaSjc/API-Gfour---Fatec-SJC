@@ -4,7 +4,8 @@ import MySQLdb.cursors
 import re
 import os
 from flask_mysqldb import MySQL,MySQLdb
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.engine import url
+from sqlalchemy.orm import query, sessionmaker
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy as db
 import mysql.connector
@@ -55,6 +56,7 @@ class Usuario(db.Model):
     tipoUsuario = db.Column(db.String(10))
     disciplina = relationship("Disciplina", secondary=association_usuario_disciplina)
     grupo = relationship("Grupo",secondary='Usuario_has_Grupo')
+    postagem = relationship("Postagem",cascade="all,delete-orphan")
 
 class Postagem(db.Model):
     __tablename__ = "Postagem"
@@ -80,7 +82,6 @@ class Disciplina(db.Model):
     __tablename__="Disciplina"
     idDisciplina = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nomeDisciplina = db.Column(db.String(100))
-    usuario_id = db.Column(db.Integer, ForeignKey("Usuario.idUsuario"))
     usuario = relationship("Usuario", secondary=association_usuario_disciplina)
 
 
@@ -215,10 +216,20 @@ def show(id=None):
     grupos = Grupo.query.join(association_table).filter(
         (association_table.c.usuario_idUsuario == id_Usuario)&(association_table.c.grupo_idGrupo == Grupo.idGrupo)
     ).all()
-    postagem = Postagem.query.join(association_postagem_grupo).filter(
-        (association_postagem_grupo.c.grupo_idGrupo == id)&(association_postagem_grupo.c.postagem_idPostagem == Postagem.idPostagem)
-    ).all()
-    return render_template('visualizacao.html', postagem=postagem,podePostar=podePostar,id_Usuario=id_Usuario, grupos=grupos)
+    postagem = [] 
+    nome_grupo = "Geral"
+    if id != None:
+        grupo = Grupo.query.filter_by(idGrupo = id).first()
+        nome_grupo = grupo.nomeGrupo
+        postagem = Postagem.query.join(association_postagem_grupo).filter(
+            (association_postagem_grupo.c.grupo_idGrupo == id)&(association_postagem_grupo.c.postagem_idPostagem == Postagem.idPostagem)
+        ).all()
+    else:   
+        postagem = Postagem.query.join(association_postagem_grupo,association_postagem_grupo.c.postagem_idPostagem == None,isouter=True)
+    
+    return render_template('visualizacao.html', postagem=postagem,
+            podePostar=podePostar,id_Usuario=id_Usuario, grupos=grupos,nome_grupo=nome_grupo,tipo=session["tipo"])
+
 
 @app.route("/localizar",methods=["POST","GET"])
 def localizar():
@@ -321,9 +332,12 @@ def post_arquivo():
 
 @app.route('/admin')
 def admin():
-    usuarios = Usuario.query.join(Usuario.grupo,aliased=True)
-    return render_template('index.html',usuarios=usuarios)
-
+    tipo = session["tipo"]
+    if tipo== "admin":
+        usuarios = Usuario.query.all()
+        return render_template('index.html',usuarios=usuarios)
+    else:
+        return redirect (url_for('show'))
 @app.route('/inicio')
 def admin_inicio():
     return render_template('index.html')
@@ -390,6 +404,7 @@ def edit(id):
             msg = 'Alteração Efetuada com Sucesso !'
             flash(msg)
             return redirect(url_for('admin'))
+    print(user.tipoUsuario)
     return render_template('edit.html',user=user, grupos=grupos, usuario_grupos = usuario_grupos)
 
 @app.route('/view/<id>')

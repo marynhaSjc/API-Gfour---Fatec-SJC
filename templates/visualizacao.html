@@ -40,18 +40,23 @@ body::-webkit-scrollbar-thumb {
             {% endif %}
             <li><a href="{{ url_for ('pesquisar') }}">Pesquisar</a></li>
             <li><a href="{{ url_for ('logout') }}">Logout</a></li>
+            {% if tipo == "admin" %}
             <li><a href="{{ url_for ('admin') }}">Admin</a></li>
+            {% endif %}
         </ul>
       </header> 
-   <h2 style="margin-left: 35%;color: #02125d;font-weight: bold; margin-top: 5%">Mensagens Publicadas</h2>
+   <h2 class="text-center" style="color: #02125d;">Mensagens Publicadas</h2>
    <select class="js-example-basic form-control" style="width: 45%;margin-left: 30%;" name="grupos" id="filtrar_grupo">
        <option value="" disabled selected >Selecione o Grupo</option>
+       <option value="">Geral</option>
     {%for grupo in grupos %}
 
     <option value="{{grupo.idGrupo}}">{{grupo.nomeGrupo}}</option>
     {% endfor %}
   </select>
-
+    
+   <h2 class="text-center">{{nome_grupo }}</h2>
+  
     {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin:5%;"  class="notification is-danger">
@@ -94,7 +99,11 @@ body::-webkit-scrollbar-thumb {
 </body>
 <script>
     $('#filtrar_grupo').on('change',function(){
-        $(location).prop('href','/visualizacao/'+this.value)
+        if (this.value=== ""){
+            $(location).prop('href','/visualizacao')
+        }else{
+            $(location).prop('href','/visualizacao/'+this.value)
+        }    
     })
 </script>
 </html>

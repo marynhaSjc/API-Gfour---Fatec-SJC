@@ -63,9 +63,9 @@
 	<div class="form-group col-md-4">
 		<label for="exampleInputEmail1" style="font-size: 20px;">Cargo</label>
 		<select name="cargo" value="{{ user.tipoUsuario }}" style="font-size: 15px; height: 30px;" id="exampleInputEmail1" class="form-control">
-            <option value="aluno">ALUNO</option>
-            <option value="professor">PROFESSOR</option>
-            <option value="admin">ADMINISTRADOR</option>
+            <option value="aluno" {% if user.tipoUsuario == "aluno" %} selected{%endif%}>ALUNO</option>
+            <option value="professor"{% if user.tipoUsuario == "professor" %} selected{%endif%}>PROFESSOR</option>
+            <option value="admin"{% if user.tipoUsuario == "admin" %} selected{%endif%}>ADMINISTRADOR</option>
         </select>
 	</div>	
 	</div>
@@ -90,7 +90,7 @@
 	<div class="row">
 	  <div class="col-md-12">
 	  	<button type="submit" class="btn btn-primary" style="height: 31px; font-size: 15px;">Atualizar</button>
-		<a href="template.html" class="btn btn-default" style="height: 31px; font-size: 15px;">Cancelar</a>
+		<a href="/admin" class="btn btn-default" style="height: 31px; font-size: 15px;">Cancelar</a>
 	  </div>
 	</div>
 
