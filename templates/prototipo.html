@@ -6,29 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>-->
+<style>
+    table, th, td {
+  border:2px solid rgb(0, 0, 0);
+}
+.tabela{
+ margin-top: 20px;;width:98%;
+}
+
+
+</style>
+
 {% extends "base.html" %}
 {% block contents %}
 <title> Criação de Grupos</title>
-<body>
-    <form method="post" action="/add_grupo">
-        <div class="row">
+<body style="background-color: ;">
+    <form method="post" action="/add_grupo" style=";width: 50%;;"
+        
             <div class="form-group col-md-4" style="margin-left: 20px; margin-top: 20px;">
                 <label for="exampleInputEmail1" style=" font-size: 20px;"><strong> Nome do Grupo </label>
                 <input type="text" style=" font-size: 15px; height: 30px;" class="form-control"  name="add_grupo"  required id="exampleInputEmail1" placeholder="Digite o nome do grupo">
             </div>	
             </div>
-            <button type="submit" class="btn btn-primary" style="margin-left: 35px; margin-top: 20px; height: 30px; width: 60px; font-size: 15px;">Criar</button>
+            <button type="submit" class="btn btn-primary" style="margin-left: ; margin-top: 5%;;background-color:rgb(154, 154, 158);border-color: black; height:40px; width: 70px; font-size: 20px;">Criar</button>
             
-            <table style="margin-left: 35px; margin-top: 20px;">
+        <table class="tabela">
             <tbody>
+        
                 {% for grupo in grupos %}
-
+                
 				<tr>
-					<td style=" font-size: 15px; "">{{grupo.idGrupo}}</td>
-                    <td style=" font-size: 15px; "">{{grupo.nomeGrupo}}</td>
-					
 
-
+                    <td style=" font-size: 20px;;">{{grupo.idGrupo}}</td>
+                    <td style=" font-size: 20px;; ">{{grupo.nomeGrupo}}</td>
 					</td>
 				</tr>
                     {% endfor %}
@@ -37,6 +47,7 @@
         </table>
   
     </form>
+
 </body>
 {% endblock %}
 </html>

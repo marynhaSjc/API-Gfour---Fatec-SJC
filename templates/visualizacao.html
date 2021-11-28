@@ -40,10 +40,11 @@ body::-webkit-scrollbar-thumb {
             {% endif %}
             <li><a href="{{ url_for ('pesquisar') }}">Pesquisar</a></li>
             <li><a href="{{ url_for ('logout') }}">Logout</a></li>
+            <li><a href="{{ url_for ('admin') }}">Admin</a></li>
         </ul>
       </header> 
    <h2 style="margin-left: 35%;color: #02125d;font-weight: bold; margin-top: 5%">Mensagens Publicadas</h2>
-   <select class="js-example-basic form-control" name="grupos" id="filtrar_grupo">
+   <select class="js-example-basic form-control" style="width: 45%;margin-left: 30%;" name="grupos" id="filtrar_grupo">
        <option value="" disabled selected >Selecione o Grupo</option>
     {%for grupo in grupos %}
 
@@ -58,7 +59,7 @@ body::-webkit-scrollbar-thumb {
                 </div>
             {% endif %}
         {% endwith %}
-    <div class="m-5 bg-secondary ">
+    <div  class="m-5 bg-secondary ">
     {% for mostrar in postagem %}
         {% if loop.index is divisibleby  2 %}
         <div class="par border border-dark">

@@ -18,14 +18,15 @@
 </head>
 <body>
     {% block nav %}
-    <header class="header">
-        <a href="https://fatecsjc-prd.azurewebsites.net/" style=" font-size: 35px;"" id="logo"> <img src="../static/img/favicon.png" width="60" height="60" class="d-inline-block align-top" alt="" >Fa<span>tec</span></a>
+    <header class="header" >
+        <a href="{{ url_for ('logout') }}" style=" font-size: 35px;" id="logo"> <img src="../static/img/favicon.png" width="60" height="60" class="d-inline-block align-top" alt="" >Fa<span>tec</span></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="navicon" ></span></label>
         <ul style=" font-size: 18px; "class="menu">
-            <li ><a href="/admin">Inicio</a></li>
-            <li><a href="/add">new_user</a></li>
-            <li><a href="/edit">update user</a></li>
+            <li ><a href="{{ url_for ('admin') }}">Inicio</a></li>
+            <li><a href=" {{ url_for ('add_grupo') }}" >Novo Grupo</a></li>
+            <li><a href="{{ url_for ('logout') }}">Logout</a></li>
+            
         </ul>
       </header> 
     {% endblock %}
