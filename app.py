@@ -131,8 +131,8 @@ def login():
             session['nome'] = usuário.nomeUsuario
             session['tipo'] = usuário.tipoUsuario
             session['id'] = str(usuário.idUsuario)
-            session['senha'] = usuário.senhaUsuario
-            msg = 'Logged in successfully !'
+            #session['senha'] = usuário.senhaUsuario
+            msg = ('Olá %s !'% session['nome'])
             flash(msg)
             return redirect(url_for('show'))
         else:
@@ -143,6 +143,8 @@ def login():
 
 @app.route('/logout')
 def logout():
+    session.pop ('id', None)
+    session.pop ('tipo', None)
     session.pop('nome', None)
     return redirect(url_for('login'))
 
@@ -212,7 +214,7 @@ def postar():
 @app.route('/visualizacao')
 def show(id=None):
     id_Usuario = session['id']
-    podePostar = True if session['tipo'] == "professor" else False
+    podePostar = True if session['tipo'] == "professor" or session['tipo'] == "admin" else False
     grupos = Grupo.query.join(association_table).filter(
         (association_table.c.usuario_idUsuario == id_Usuario)&(association_table.c.grupo_idGrupo == Grupo.idGrupo)
     ).all()
@@ -222,10 +224,19 @@ def show(id=None):
         grupo = Grupo.query.filter_by(idGrupo = id).first()
         nome_grupo = grupo.nomeGrupo
         postagem = Postagem.query.join(association_postagem_grupo).filter(
-            (association_postagem_grupo.c.grupo_idGrupo == id)&(association_postagem_grupo.c.postagem_idPostagem == Postagem.idPostagem)
-        ).all()
+            (association_postagem_grupo.c.grupo_idGrupo == id)&
+            (association_postagem_grupo.c.postagem_idPostagem == Postagem.idPostagem)
+        ).order_by(Postagem.dataPostagem.desc()).all()
     else:   
-        postagem = Postagem.query.join(association_postagem_grupo,association_postagem_grupo.c.postagem_idPostagem == None,isouter=True)
+
+
+        postagem = Postagem.query.outerjoin(association_postagem_grupo).filter(
+            association_postagem_grupo.c.grupo_idGrupo == None).order_by(Postagem.dataPostagem.desc()) 
+     
+
+
+
+        print(postagem)
     
     return render_template('visualizacao.html', postagem=postagem,
             podePostar=podePostar,id_Usuario=id_Usuario, grupos=grupos,nome_grupo=nome_grupo,tipo=session["tipo"])
@@ -239,20 +250,24 @@ def localizar():
         if search_word == '':
             postagem = Postagem.query.join(Postagem.usuario,aliased=True)
         else:
-            postagem = Postagem.query.join(Postagem.usuario, aliased=True).filter(
+            postagem = Postagem.query.join(Usuario, aliased=True).filter(
                 or_(
                     Postagem.tituloPostagem.ilike("%"+search_word+"%"),
                     Postagem.mensagemPostagem.ilike("%"+search_word+"%"),
-                    Postagem.dataPostagem.ilike("%"+search_word+"%")
+                    Postagem.dataPostagem.ilike("%"+search_word+"%"),
+                    Usuario.nomeUsuario.ilike("%"+search_word+"%")
                 )
             )
             numrows = Postagem.query.join(Postagem.usuario, aliased=True).filter(
                 or_(
                     Postagem.tituloPostagem.ilike("%"+search_word+"%"),
                     Postagem.mensagemPostagem.ilike("%"+search_word+"%"),
-                    Postagem.dataPostagem.ilike("%"+search_word+"%")
+                    Postagem.dataPostagem.ilike("%"+search_word+"%"),
+                    Usuario.nomeUsuario.ilike("%"+search_word+"%")
                 )
             ).count()
+
+            
     return jsonify({'htmlresponse': render_template('response.html', postagem=postagem, numrows=numrows)})
 
 @app.route("/cadastrar")
@@ -312,6 +327,8 @@ def post_arquivo():
             g=Grupo.query.filter_by(idGrupo=grupo).first()
             grupos_salvos.append(g)
         if nome_do_arquivo != '':
+            path=os.path.abspath(os.path.dirname(__file__))
+           
             arquivo.save(os.path.join(documentos, nome_do_arquivo))
             pathFile=nome_do_arquivo  #os.path.join(documentos,nome_do_arquivo)
             novo_post = Postagem(usuario_id=session['id'],grupo=grupos_salvos,
@@ -332,7 +349,14 @@ def post_arquivo():
 
 @app.route('/admin')
 def admin():
-    tipo = session["tipo"]
+    tipo = ''
+    if 'tipo' in session:
+        tipo = session["tipo"]
+    else:
+        msg = 'Nome Usuário e/ou Senha incorretos  !'
+        flash(msg)
+        return redirect (url_for('logout'))
+
     if tipo== "admin":
         usuarios = Usuario.query.all()
         return render_template('index.html',usuarios=usuarios)

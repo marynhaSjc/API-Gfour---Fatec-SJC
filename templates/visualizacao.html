@@ -77,21 +77,28 @@ body::-webkit-scrollbar-thumb {
         </div>
         <div>
             <p id="content"   style="margin-top: 1%;font-size: 18px;;margin-left: 4%;text-align: justify;margin-right: 4%">{{ mostrar['mensagemPostagem'] }} </p>
-            <strong id="nome" style="margin-top: 8%;margin-left: 4%;font-size: 20px;;color: #000000">{{ mostrar.usuario.nomeUsuario }}</strong>
-            <small id="hora" style="font-size: 20px;">{{ mostrar['dataPostagem'].strftime('%d/%m/%Y %H:%M:%S')}}</small>
+        <div class="row pr-3">
+            <div class="col-6">
 
+                <strong id="nome" style="margin-top: 8%;margin-left: 4%;font-size: 20px;;color: #000000">{{ mostrar.usuario.nomeUsuario }}</strong>
+            </div>
+            <div class="col-6 text-right">
+                <small id="hora" style="font-size: 20px;">{{ mostrar['dataPostagem'].strftime('%d/%m/%Y %H:%M:%S')}}</small>
+            </div>
+        </div>
             
-
-
+            <div class="row p-3">
+            <div class="col-6">
             {% if mostrar.anexo|length > 0 %}
             <a class="btn btn-success border border-dark" style="margin-left: 1%;;background: rgb(154, 154, 158);" href="{{ url_for('static',filename="documentos/")}}{{ mostrar.anexo[0]['pathfileAnexo']}}" download >Download Anexo</a>
-            {% endif %}
-
+            {% endif %}</div>
+            <div class="text-right col-6 pr-3">
             {% if id_Usuario == mostrar.usuario.idUsuario | string()  %}
+            
             <a class="btn btn-danger border border-dark" style="margin-left:1%;"   href="/apagar/{{ mostrar.idPostagem }}" >Apagar Mensagem</a>
-            {% endif %}
-                <br>
-            <br>
+            {% endif %}</div>
+            </div>
+                
         </div>
         </div>
         {% endfor %}
