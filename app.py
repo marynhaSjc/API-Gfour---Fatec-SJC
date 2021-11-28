@@ -301,7 +301,7 @@ def apagar(id):
     usuario_id = session['id']
     postagem = Postagem.query.filter_by(idPostagem=id).first()
     if str(usuario_id) == str(postagem.usuario_id):
-        #Postagem.query.filter_by(idPostagem=id).delete()
+
         db.session.delete(postagem)
         db.session.commit()
         flash("POST APAGADO")
