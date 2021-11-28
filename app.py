@@ -85,10 +85,6 @@ class Disciplina(db.Model):
     usuario = relationship("Usuario", secondary=association_usuario_disciplina)
 
 
-# class Usuario_has_Disciplina(db.Model):
-#     usuario_idUsuario = db.Column(db.Integer,ForeignKey("Usuario.idUsuario"),primary_key=True)
-#     disciplina_idDisciplina = db.Column(db.Integer,ForeignKey("Disciplina.idDisciplina"),primary_key=True)
-
 class Funcao(db.Model):
     __tablename__ = "Funcao"
     idFuncao = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -107,7 +103,6 @@ class Grupo(db.Model):
     postagem = relationship("Postagem", secondary=association_postagem_grupo)
 
 db.create_all()
-
 
 app.secret_key = 'your secret key'
 app.config['MYSQL_HOST'] = 'localhost'
@@ -139,7 +134,6 @@ def login():
             msg = 'Nome Usuário e/ou Senha incorretos  !'
             flash(msg)
     return render_template('login.html', msg=msg)
-
 
 @app.route('/logout')
 def logout():
@@ -227,17 +221,10 @@ def show(id=None):
             (association_postagem_grupo.c.grupo_idGrupo == id)&
             (association_postagem_grupo.c.postagem_idPostagem == Postagem.idPostagem)
         ).order_by(Postagem.dataPostagem.desc()).all()
-    else:   
-
-
+    else:
         postagem = Postagem.query.outerjoin(association_postagem_grupo).filter(
-            association_postagem_grupo.c.grupo_idGrupo == None).order_by(Postagem.dataPostagem.desc()) 
-     
-
-
-
+            association_postagem_grupo.c.grupo_idGrupo == None).order_by(Postagem.dataPostagem.desc())
         print(postagem)
-    
     return render_template('visualizacao.html', postagem=postagem,
             podePostar=podePostar,id_Usuario=id_Usuario, grupos=grupos,nome_grupo=nome_grupo,tipo=session["tipo"])
 
@@ -266,8 +253,6 @@ def localizar():
                     Usuario.nomeUsuario.ilike("%"+search_word+"%")
                 )
             ).count()
-
-            
     return jsonify({'htmlresponse': render_template('response.html', postagem=postagem, numrows=numrows)})
 
 @app.route("/cadastrar")
@@ -301,7 +286,6 @@ def apagar(id):
     usuario_id = session['id']
     postagem = Postagem.query.filter_by(idPostagem=id).first()
     if str(usuario_id) == str(postagem.usuario_id):
-
         db.session.delete(postagem)
         db.session.commit()
         flash("POST APAGADO")
@@ -317,7 +301,7 @@ def post_arquivo():
         conteudo = request.form['conteudo']
         grupos = request.form.getlist('grupos')
         if not titulo:
-            flash("Titulo é obrigatorio")  # INSERIR MENSAGENS FLASH NO HTML
+            flash("Titulo é obrigatorio")
             return render_template('postar.html')
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         arquivo = request.files.get("meuArquivo")
@@ -327,10 +311,10 @@ def post_arquivo():
             g=Grupo.query.filter_by(idGrupo=grupo).first()
             grupos_salvos.append(g)
         if nome_do_arquivo != '':
-            path=os.path.abspath(os.path.dirname(__file__))
-           
-            arquivo.save(os.path.join(documentos, nome_do_arquivo))
-            pathFile=nome_do_arquivo  #os.path.join(documentos,nome_do_arquivo)
+            path = os.path.abspath(os.path.dirname(__file__))
+            full_path = os.path.join(path,"static","documentos")
+            arquivo.save(os.path.join(full_path, nome_do_arquivo))
+            pathFile=nome_do_arquivo
             novo_post = Postagem(usuario_id=session['id'],grupo=grupos_salvos,
                                  tituloPostagem=request.form['titulo'], mensagemPostagem=request.form['conteudo'])
             db.session.add(novo_post)
@@ -356,12 +340,12 @@ def admin():
         msg = 'Nome Usuário e/ou Senha incorretos  !'
         flash(msg)
         return redirect (url_for('logout'))
-
     if tipo== "admin":
         usuarios = Usuario.query.all()
         return render_template('index.html',usuarios=usuarios)
     else:
         return redirect (url_for('show'))
+
 @app.route('/inicio')
 def admin_inicio():
     return render_template('index.html')
@@ -408,7 +392,7 @@ def edit(id):
             flash(msg)
             return redirect(url_for('edit',id=id ))
         elif not re.match(r'[A-Za-z0-9]+', nome):
-            msg = 'Nome do usuário deve conter somente caracteres e numeros !'
+            msg = 'Nome do usuário deve conter somente caracteres e números !'
             flash(msg)
             return redirect(url_for('edit',id=id ))
         elif not nome or not cargo or not email:
