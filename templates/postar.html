@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/novanav.css">
     <link rel="stylesheet" href="..\static\css\postar.css" type="text/css">
-    <link rel="shortcut icon" href="..\static\img\favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="..\static\img\favicon1.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <title>Postar</title>
 </head>
 <style>
@@ -16,48 +20,52 @@ body{
 </style>
 
 <body class="body">
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" style="font-weight: bold;font-size: x-large;margin-left: 5px;text-align: center"><img src="../static/img/favicon.png" width="40" height="40" class="d-inline-block align-top" alt=""> FATEC SJC </a>
-            <form  class="d-flex">
-                <button  style="margin-right:5% ;font-weight: bold"   class="btn btn-secondary" type="button">Voltar</button>
-                <a href="{{ url_for ('logout') }}"  >  <button style="margin-right:;font-weight: bold"  class="btn btn-secondary" type="button">Logout</button></a>
-            </form>
-        </div>
-    </nav>
-
+    <header class="header">
+        <a href="https://fatecsjc-prd.azurewebsites.net/" id="logo"> <img src="../static/img/favicon.png" width="60" height="60" class="d-inline-block align-top" alt="">Fa<span>tec</span></a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="{{ url_for('show')}}">Home</a></li>
+            {% if podePostar %}
+            <li><a href="{{ url_for ('leitura') }}">Publicar</a></li>
+            {% endif %}
+            <li><a href="{{ url_for ('pesquisar') }}">Pesquisar</a></li>
+            <li><a href="{{ url_for ('logout') }}">Logout</a></li>
+        </ul>
+      </header>
 
 
 <div class="borda">
-    <form action="postar" name="formulario" method="post" enctype="multipart/form-data">
+    
+    <form action="/arquivos"
+            method="post"
+            enctype="multipart/form-data">
+
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><strong>Criar Titulo</strong></label>
-            <!--<select class="form-select1" aria-label="Default select example">
-                <option selected>PROF</option>
-                <option value="1">DIR</option>
-                <option value="2">CDC</option>
-                <option value="3">ALUNOS</option>
-            </select>!-->
             <input type="text" class="form-control"  name="titulo" id="exampleFormControlInput1" placeholder="Titulo" value = "{{ request.form['titulo']}}">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label"><strong>Criar Descrição</strong></label>
             <textarea class="form-control"  name="conteudo"  id="exampleFormControlTextarea1" rows="3" placeholder="Descrição">{{ request.form['conteudo'] }}</textarea>
             <br>
-            <div class="container">
-               
-                    <input class="arquivar" style="font-weight: bold;margin-left: 39%; ;" type="file"  title=" " value="Arquivar" >
-                    <input style="font-weight: bold" class="enviar" type="submit" value="Enviar">
-                </div>
-                <br>
-
-
-
-                </div>
-
         </div>
-  </form>
 
+        <div class="col-5 form-group m-auto">
+            <label for="exampleFormControlTextarea1" class="text-left d-block"><strong>Selecione os Grupos </strong></label>
+            <select class="js-example-basic-multiple form-control" name="grupos" multiple="multiple">
+                {%for grupo in grupos %}
+
+                <option value="{{grupo.idGrupo}}">{{grupo.nomeGrupo}}</option>
+                {% endfor %}
+              </select>
+        
+        </div>
+            <div class="container">
+         <input id="meuArquivo"  name="meuArquivo" class="arquivar" style="font-weight: bold;margin-left: 39%;" type="file">
+            <input style="font-weight: bold" class="enviar" type="submit" value="Enviar">
+            </div>
+    </form>
 </div>
 {% with messages = get_flashed_messages() %}
 {% if messages %}
@@ -67,5 +75,10 @@ body{
 {% endif %}
 {% endwith %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+</script>
 </body>
 </html>

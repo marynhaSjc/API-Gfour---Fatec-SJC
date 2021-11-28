@@ -28,3 +28,12 @@ width: 15%;
     margin-top: -1%;
     display: -o-flex;
 }
+
+.par{
+    background: #F0F8FF;
+}
+
+.impar{
+    background: #989e9e;
+}
+

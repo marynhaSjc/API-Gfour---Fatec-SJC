@@ -6,6 +6,8 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
-# ignore
-.idea/
 
+.idea/
+/chave/
+venv/
+__pycache__/

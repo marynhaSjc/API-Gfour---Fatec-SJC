@@ -4,17 +4,17 @@
       <tr>
          <th>Título</th>
          <th>Conteúdo</th>
-         <th>Nome</th>
-        <th>Data</th>
+          <th>Nome</th>
+         <th>Data</th>
       </tr>
   </thead>
   <tbody>
 {% for row in postagem %}  
    <tr>
-    <td>{{row.titulo}}</td>
-    <td>{{row.conteudo}}</td>
-    <td>{{row.nome}}</td>
-    <td>{{row.data}}</td>
+    <td>{{row.tituloPostagem}}</td>
+    <td>{{row.mensagemPostagem}}</td>
+    <td>{{row.usuario.nomeUsuario}}</td>
+    <td>{{row.dataPostagem.strftime('%d/%m/%Y %H:%M:%S')}}</td>
 
    </tr>
 {% endfor %} 
