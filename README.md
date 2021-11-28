@@ -124,6 +124,17 @@ Rodrigo Ribeiro dos Santos | DT | [Linkedin](https://www.linkedin.com/in/rodrigo
 |  04  |  Recebimento de Mensagens                     | Organização do layout de visualização  |   
 |  05  |  Construção de elementos de filtro e pesquisa | Implementação da função pesquisar e tela|
     
+    
+<p> Backlog da Sprint 4</p>
+    
+| Item | Descrição                                     | Como                                   |
+| :--: | :-------------------------------------------: | :------------------------------------: |
+|  01  |  Função Anexar                                | Implementação da função Anexar arquivos|
+|  02  |  Filtro                                       | Implementação do filtro de mensagens   |
+|  03  |  Definição de Hierarquia                      | Hierarquia por permissões |
+|  04  |  Teste de Usabilidade                         | Teste de cadastros,postagens e pesquisa  |   
+|  05  |  Criação da tela admin e suas funções         | Tela de gerenciamento do admin e funções |
+    
 
 <h3>Entrega da Sprint 1</h3>
 <p> Após a primeira rodada de análise de requisitos do Cliente P2, segue proposta de interface gráfica do protótipo navegável, contendo :</p>  
@@ -153,11 +164,12 @@ Rodrigo Ribeiro dos Santos | DT | [Linkedin](https://www.linkedin.com/in/rodrigo
     
 <h3>Entrega da Sprint 4</h3>
 <p> Na Sprint 4, pretendemos fazer os ultimos ajustes e implementações e entrar na fase de testes do software e enviar para aprovação ao cliente</p> 
-    <p> - Implementação da função Anexar </p>
-    <p> - Implementação final dos filtros</p>        
-    <p> - Definição de hierarquia de permissões </p>
-    <p> - Teste de usabilidade </p>
-    <p> - Teste com Usuários </p>
+    <p> - Implementação da função Anexar :heavy_check_mark: </p>
+    <p> - Implementação final dos filtros :heavy_check_mark: </p>        
+    <p> - Definição de hierarquia de permissões :heavy_check_mark: </p>
+     <p> - Criação de tela Admin e suas funções :heavy_check_mark: </p>
+    <p> - Teste de usabilidade :heavy_check_mark: </p>
+   
 
 </div>
 
@@ -185,6 +197,9 @@ Clique (https://www.youtube.com/watch?v=yACAOmlXCXU) para assistir
     
 <h3> Apresentação Vídeo Sprint 3</h3>
 Clique (https://www.youtube.com/watch?v=hmmCVpZN3-o) para assistir
+    
+<h3> Apresentação Vídeo Sprint 4</h3>
+Clique  para assistir
 
 </div>
 
