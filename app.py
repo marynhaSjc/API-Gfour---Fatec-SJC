@@ -29,6 +29,7 @@ host = 'localhost'
 engine = create_engine("mysql://root:fatec2021@localhost/dbfatec")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:fatec2021@localhost/dbfatec'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
 db = SQLAlchemy(app)
 
 if not database_exists(engine.url):
@@ -104,6 +105,7 @@ class Grupo(db.Model):
 
 db.create_all()
 
+
 app.secret_key = 'your secret key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = usuario
@@ -112,6 +114,16 @@ app.config['MYSQL_DB'] = nome_banco
 
 mysql = MySQL(app)
 documentos = os.getenv("documentos")
+
+
+
+@app.route('/create')
+def criar_adm():
+    usuario_adm = Usuario(nomeUsuario='Admin',emailUsuario='admin@fatec.sp.gov.br',senhaUsuario='fatec2021',tipoUsuario="admin")           
+    db.session.add(usuario_adm)
+    db.session.commit()
+    return redirect(url_for('login'))
+
 
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
@@ -145,7 +157,9 @@ def logout():
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     msg = ''
+
     if request.method == 'POST':
+        
         nome = request.form['nome']
         email = request.form['email']
         senha = request.form['pwd']
@@ -174,9 +188,10 @@ def cadastro():
         elif not nome or not senha or not email:
             msg = "Preencha o formulario"
             flash(msg)
-            return render_template('cadastro.html')
+            return render_template('cadastro.html')        
+
         else:
-            novo_usuario = Usuario(nomeUsuario=nome,emailUsuario=email,senhaUsuario=senha,tipoUsuario="aluno")
+            novo_usuario = Usuario(nomeUsuario=nome,emailUsuario=email,senhaUsuario=senha,tipoUsuario="aluno")           
             db.session.add(novo_usuario)
             db.session.commit()
             msg = 'Cadastro Efetuado com Sucesso !'
