@@ -250,10 +250,22 @@ Executar o seguinte comando para instalar as dependências necessárias.
 c:\API-Gfour---Fatec-SJC\pip install -r requirements.txt
 ```        
 
-Rodar o Flask
+Rodar a aplicação
 ```
-c:\API-Gfour---Fatec-SJC\flask run
-```        
+c:\API-Gfour---Fatec-SJC\python app.py
+```
+
+Para criar o usuário "Admin" no primeiro uso:
+```
+http://127.0.0.1:5000/create
+
+Por Padrão: 
+    
+Usuário: Admin
+Senha: fatec2021
+    
+```            
+    
 <h3>Demonstração do Protótipo</h3>
     
 Antes de realmente desenvolver o projeto, foi idealizado um layout pela equipe com base em perguntas feitas ao cliente, foi criado um protótipo em HTML, CSS (que possibilitava algumas interações na interface).
