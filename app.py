@@ -122,6 +122,9 @@ def criar_adm():
     usuario_adm = Usuario(nomeUsuario='Admin',emailUsuario='admin@fatec.sp.gov.br',senhaUsuario='fatec2021',tipoUsuario="admin")           
     db.session.add(usuario_adm)
     db.session.commit()
+    
+    flash('Administrador criado !')
+    
     return redirect(url_for('login'))
 
 
