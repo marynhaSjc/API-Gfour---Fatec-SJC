@@ -19,19 +19,19 @@
 	<div class="form-group ">
 		<h3 class=" " style="font-size: 25px;"><strong>Editar Item</strong></h3>
 		<label for="examnpleFormControlIput1" class="form-label" style="font-size: 20px;">Nome</label>
-		<input type="" style=" font-size: 15px; height: 30px;" class="form-control" name="nome" value="{{ user.nomeUsuario }}" id="exampleInputEmail1" placeholder="nome">
+		<input type="" style=" font-size: 15px; " class="form-control" name="nome" value="{{ user.nomeUsuario }}" id="exampleInputEmail1" placeholder="nome">
 	</div>	
 	</div>
 	<div class="row">
 	<div class="form-group ">
 		<label for="exampleInputEmail1" style="font-size: 20px;">Email</label>
-		<input type="email" style="font-size: 15px; height: 30px;" class="form-control"  name="email"  value="{{ user.emailUsuario }}"   id="exampleInputEmail1" placeholder="Email">
+		<input type="email" style="font-size: 15px; " class="form-control"  name="email"  value="{{ user.emailUsuario }}"   id="exampleInputEmail1" placeholder="Email">
 	</div>	
 	</div>
 	<div class="row">
 	<div class="form-group ">
 		<label for="exampleInputEmail1" style="font-size: 20px;">Cargo</label>
-		<select name="cargo" value="{{ user.tipoUsuario }}" style="font-size: 15px; height: 35px;" id="exampleInputEmail1" class="form-control">
+		<select name="cargo" value="{{ user.tipoUsuario }}" style="font-size: 15px;" id="exampleInputEmail1" class="form-control">
             <option value="aluno" {% if user.tipoUsuario == "aluno" %} selected{%endif%}>ALUNO</option>
             <option value="professor"{% if user.tipoUsuario == "professor" %} selected{%endif%}>PROFESSOR</option>
             <option value="admin"{% if user.tipoUsuario == "admin" %} selected{%endif%}>ADMINISTRADOR</option>

@@ -3,13 +3,16 @@
  {% block contents %}
  <title>Adminstração</title>
 <body>
- {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin:1%;"  class="notification is-danger">
-            {{ messages[0] }}
-        </div>
-    {% endif %}
-{% endwith %}
+	<div class="text-center w-100">
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin:1%;"  class="notification is-danger">
+					{{ messages[0] }}
+				</div>
+			{% endif %}
+		{% endwith %}
+	</div>
+ 
  <div id="main" class="container-fluid" style="margin-top: 20px">
  
 
@@ -29,8 +32,8 @@
 					<th style="font-size: 15px;">Nome</th>
                     <th style="font-size: 15px;">Email</th>
 					<th style="font-size: 15px;">Cargo</th>
-					<th class="text-center" style="font-size: 15px; ">Grupo</th>
-					<th style="font-size: 15px;" class="actions text-center">Ações</th>
+					<th class="text-center col-md-3" style="font-size: 15px; ">Grupo</th>
+					<th style="font-size: 15px;" class="actions text-center col-md-3">Ações</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -42,8 +45,8 @@
 					<td>{{ usuario.emailUsuario }}</td>
 					<td>{{ usuario.tipoUsuario }}</td>
 
-                    <td class="text-center">{% for grupo in usuario.grupo  %}
-						{{grupo.nomeGrupo}} /
+                    <td class="text-wrap text-center">{% for grupo in usuario.grupo  %}
+						{{grupo.nomeGrupo}} / 
 						{% endfor %}
 					</td>
 					
@@ -108,7 +111,7 @@
 
 {% block js %}
 <script>
-	function confirmar_delete(id) {
+	function confirmar_delete(idUsuario) {
 		$("#confirmar").attr("href",`/deletar/${idUsuario}`)
 	}
 </script>

@@ -1,12 +1,12 @@
 .frame{
     padding: 15px;
-    margin-top: 5%;
+    margin-top: 2%;
     margin-left: 18%;
     margin-right: 18%;
     font-size: xxx-large;
 }
 .frame-title{
-    margin-top: 10%;
+    margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
     font-size: 80%;
@@ -25,12 +25,12 @@
 }
 
 @media  (max-width: 600px) {
-    .frame_buttom_1 {
+    /* .frame_buttom_1 {
         margin-left: 28%;
 }
     .frame_buttom_2 {
         margin-left: 40%;
-}
+} */
     .rodape_logo img{
         margin-left: 37%;
         width: 30%;

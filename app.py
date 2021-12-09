@@ -306,9 +306,9 @@ def apagar(id):
     if str(usuario_id) == str(postagem.usuario_id):
         db.session.delete(postagem)
         db.session.commit()
-        flash("POST APAGADO")
+        flash("Post Apagado")
     else:
-        flash("SEM PERMISSÂO PARA APAGAR O POST")
+        flash("Sem Permissão Para Apagar o Post")
     return redirect (url_for('show'))
 
 @app.route("/arquivos",methods=["POST"])

@@ -54,7 +54,7 @@ body::-webkit-scrollbar-thumb {
     {% endfor %}
   </select>
     
-   <h2 class="text-center" style = "margin-top: 1%"">{{nome_grupo }}</h2>
+   <h2 class="text-center" style = "margin-top: 1%">{{nome_grupo }}</h2>
   
     {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -80,7 +80,14 @@ body::-webkit-scrollbar-thumb {
         </div>
         <div class="px-3">
             <div class="row">                
-                <p id="content" style="margin-top: 1%;font-size: 18px; margin-left: 2%; text-align: justify;margin-right: 4%">{{ mostrar['mensagemPostagem'] }} </p>
+                <p id="content text-wrap" 
+                    style="
+                        padding-top: 1%;
+                        font-size: 18px; 
+                        padding-left: 2%; 
+                        text-align: justify;
+                        padding-right: 4%;
+                        word-break: break-all;">{{ mostrar['mensagemPostagem'] }} </p>
             </div>
         
         <div class="row pr-3">

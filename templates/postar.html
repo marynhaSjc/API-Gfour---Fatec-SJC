@@ -44,7 +44,7 @@ body{
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><strong>Criar Titulo</strong></label>
-            <input type="text" class="form-control"  name="titulo" id="exampleFormControlInput1" placeholder="Titulo" value = "{{ request.form['titulo']}}">
+            <input type="text" class="form-control" maxlength="25"  name="titulo" id="exampleFormControlInput1" placeholder="Titulo" value = "{{ request.form['titulo']}}">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label"><strong>Criar Descrição</strong></label>
