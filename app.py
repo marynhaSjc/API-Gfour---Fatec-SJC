@@ -52,7 +52,7 @@ class Usuario(db.Model):
     __tablename__="Usuario"
     idUsuario = db.Column(db.Integer, primary_key= True, autoincrement = True)
     nomeUsuario = db.Column(db.String(30))
-    emailUsuario = db.Column(db.String(30))
+    emailUsuario = db.Column(db.String(200))
     senhaUsuario = db.Column(db.String(15))
     tipoUsuario = db.Column(db.String(10))
     disciplina = relationship("Disciplina", secondary=association_usuario_disciplina)
@@ -133,9 +133,9 @@ def criar_adm():
 def login():
     msg = ''
     if request.method == 'POST':
-        nome = request.form['nome']
+        nome = request.form['e-mail']
         senha = request.form['pwd']
-        usuário = Usuario.query.filter_by(nomeUsuario=nome,senhaUsuario=senha).first()
+        usuário = Usuario.query.filter_by(emailUsuario=nome,senhaUsuario=senha).first()
         if usuário:
             # session['loggedin'] = True
             session['nome'] = usuário.nomeUsuario
@@ -146,7 +146,7 @@ def login():
             flash(msg)
             return redirect(url_for('show'))
         else:
-            msg = 'Nome Usuário e/ou Senha incorretos  !'
+            msg = 'E-mail e/ou Senha incorretos  !'
             flash(msg)
     return render_template('login.html', msg=msg)
 

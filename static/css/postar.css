@@ -4,8 +4,7 @@
 }
 
 header{
-    width: 100%;
-    height: 80px;
+    width: 100%;    
     display: flex;
     justify-content: space-between;
     background-color: #C4C4C4;
