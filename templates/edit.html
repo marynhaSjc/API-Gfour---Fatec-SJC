@@ -10,60 +10,61 @@
     {% endif %}
 {% endwith %}-->
 
- <div id="main" class="container-fluid">
-  
-  <h3 class="page-header" style="margin-top: -20px; font-size: 25px;"><strong>Editar Item</strong></h3>
-  
-  <form action="/edit/{{ user.idUsuario }}" method="post">
+<div  class="my-5 d-flex justify-content-center ">
+	
+		
+	
+  <form action="/edit/{{ user.idUsuario }}" class="my-5 w-50  " method="post" >
 	<div class="row">
-	<div class="form-group col-md-4">
-		<label for="exampleInputEmail1" style="font-size: 20px;">Nome</label>
-		<input type="" style="font-size: 15px; height: 30px;" class="form-control" name="nome" value="{{ user.nomeUsuario }}" id="exampleInputEmail1" placeholder="nome">
+	<div class="form-group ">
+		<h3 class=" " style="font-size: 25px;"><strong>Editar Item</strong></h3>
+		<label for="examnpleFormControlIput1" class="form-label" style="font-size: 20px;">Nome</label>
+		<input type="" style=" font-size: 15px; height: 30px;" class="form-control" name="nome" value="{{ user.nomeUsuario }}" id="exampleInputEmail1" placeholder="nome">
 	</div>	
 	</div>
 	<div class="row">
-	<div class="form-group col-md-4">
+	<div class="form-group ">
 		<label for="exampleInputEmail1" style="font-size: 20px;">Email</label>
 		<input type="email" style="font-size: 15px; height: 30px;" class="form-control"  name="email"  value="{{ user.emailUsuario }}"   id="exampleInputEmail1" placeholder="Email">
 	</div>	
 	</div>
 	<div class="row">
-	<div class="form-group col-md-4">
+	<div class="form-group ">
 		<label for="exampleInputEmail1" style="font-size: 20px;">Cargo</label>
-		<select name="cargo" value="{{ user.tipoUsuario }}" style="font-size: 15px; height: 30px;" id="exampleInputEmail1" class="form-control">
+		<select name="cargo" value="{{ user.tipoUsuario }}" style="font-size: 15px; height: 35px;" id="exampleInputEmail1" class="form-control">
             <option value="aluno" {% if user.tipoUsuario == "aluno" %} selected{%endif%}>ALUNO</option>
             <option value="professor"{% if user.tipoUsuario == "professor" %} selected{%endif%}>PROFESSOR</option>
             <option value="admin"{% if user.tipoUsuario == "admin" %} selected{%endif%}>ADMINISTRADOR</option>
         </select>
 	</div>	
 	</div>
-  <fieldset>
-    <legend style="font-size: 25px;"> <strong>Escolha seus Grupos </strong></legend>
-    {%for grupo in grupos %}
+  	<fieldset>
+		<legend style="font-size: 25px;"> <strong>Escolha seus Grupos </strong></legend>
+		{%for grupo in grupos %}
 
 
-      <div>
-        <input type = "checkbox" style="width: 15px; height: 15px;" id = "codificação" name = 'grupos' value = "{{grupo.idGrupo}}" {% if grupo.idGrupo in usuario_grupos %} checked {%endif%}>
-        <label for = "coding" style="font-size: 14px;"> {{grupo.nomeGrupo}} </label>
-        
-      </div>
-
-   
-    {% endfor %}
-  </fieldset>
+		<div>
+			<input type = "checkbox" style="width: 15px; height: 15px;" id = "codificação" name = 'grupos' value = "{{grupo.idGrupo}}" {% if grupo.idGrupo in usuario_grupos %} checked {%endif%}>
+			<label for = "coding" style="font-size: 14px;"> {{grupo.nomeGrupo}} </label>
+			
+		</div>
 
 	
-	<hr />
+		{% endfor %}
+  	</fieldset>
+
+	
+	<br>
 	
 	<div class="row">
 	  <div class="col-md-12">
-	  	<button type="submit" class="btn btn-primary" style="height: 31px; font-size: 15px;">Atualizar</button>
-		<a href="/admin" class="btn btn-default" style="height: 31px; font-size: 15px;">Cancelar</a>
+	  	<button type="submit" class="btn btn-primary" style="background: rgb(65, 65, 65);border-color:rgb(154, 154, 158);">Atualizar</button>
+		<a href="/admin" class="btn btn-primary" style="background: rgb(65, 65, 65);border-color:rgb(154, 154, 158);">Cancelar</a>
 	  </div>
 	</div>
 
   </form>
- </div>
+
  
  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
